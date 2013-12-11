@@ -1,6 +1,7 @@
 Feature: Checkout Page
   should be able to checkout with non shippable product and wallet payment
 
+  
 @non_shippable
 Scenario: add product to cart
   Given I am on deatil page of deal 'limited-time-offer'
@@ -47,7 +48,6 @@ Scenario: on checkout of shippable item
   Then I should see addresses to select
   And I select first address
   And I click 'Proceed to Payment' link
-  And I proceed
   Then I should be on 'checkout' page
   And I click 'Complete Order' button
   Then Order should be successful

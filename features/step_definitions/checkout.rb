@@ -94,5 +94,5 @@ Then(/^I should see addresses to select$/) do
 end
 
 Then(/^I select first address$/) do
-  @current_page.select_address
+  @current_page.select_address_element.click
 end
