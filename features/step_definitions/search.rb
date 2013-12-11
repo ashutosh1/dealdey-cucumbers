@@ -1,4 +1,4 @@
-Given(/^I close the subscription popup$/) do
+And(/^I close the subscription popup$/) do
   on(SigninPage).close_subscription
 end
 

@@ -6,7 +6,7 @@ Before do | scenario |
   @browser = Selenium::WebDriver.for :firefox
   @browser.get("http://vinsol:v1ns0l@dd@www.prep.dealdey.com")
   @browser.manage.window.maximize
-  @browser.manage.timeouts.implicit_wait = 30
+  @browser.manage.timeouts.implicit_wait = 300
   # browser_type = ["*firefox", "*chrome"]
   #To run multiple browser parallel
   # browser_type.each do |i|
@@ -26,5 +26,5 @@ end
 
 After do
   # @browser.close_current_browser_session
-  @browser.quit
+  # @browser.quit
 end

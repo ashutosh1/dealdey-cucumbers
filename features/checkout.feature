@@ -1,6 +1,5 @@
 Feature: Checkout Page
   should be able to checkout with non shippable product and wallet payment
-
   
 @non_shippable
 Scenario: add product to cart
@@ -52,3 +51,100 @@ Scenario: on checkout of shippable item
   And I click 'Complete Order' button
   Then Order should be successful
   Then I should see 'Thanks for shopping on DealDey!'
+
+@shippable_pod
+Scenario: shippable pod deals
+  Given I am on deatil page of shippable pod deal
+  And I close the subscription popup
+  Then I should see pay on delivery section
+  Then I should see delivery detail
+    
+Scenario: add shippable pod deals to cart
+  Given I am on deatil page of shippable pod deal
+  And I close the subscription popup
+  And I add it to cart
+  Then I should see flash notice "Product PoD deal 1 was successfully added to your cart"
+
+Scenario: on checkout of shippable pod
+  Given I am on deatil page of shippable pod deal
+  And I add it to cart
+  And I click 'Proceed to Payment' link
+  And I am logged in as user
+  And I wait for 5 seconds
+  Then I should see addresses to select
+  And I select first address
+  And I click 'Proceed to Payment' link
+  Then I should be on 'checkout' page
+
+Scenario: checkout for shippable pod with address
+  Given I am on checkout page of shippable pod deal
+  And I am logged in as user
+  And I select first address
+  And I click 'Proceed to Payment' link
+  And I selcet Pay on Delivery and click complete button
+  Then Order should be successful
+  Then I should see 'Thanks for shopping on DealDey!'
+
+Scenario: checkout for shippable pod with selecting pickup
+  Given I am on checkout page of shippable pod deal
+  And I am logged in as user
+  And I select pickup location
+  And I click 'Proceed to Payment' link
+  And I selcet Pay on Delivery and click complete button
+  Then Order should be successful
+  Then I should see 'Thanks for shopping on DealDey!'
+
+@non_shippable_pod
+Scenario: non shippable pod deals
+  Given I am on deatil page of non shippable pod deal
+  Then I should see pay on delivery section
+  
+Scenario: add shippable pod deals to cart
+  Given I am on deatil page of non shippable pod deal
+  And I click 'Buy' link
+  Then I should see flash notice "PoD Service Deal 1 was successfully added to your cart"
+
+Scenario: on checkout of non shippable pod
+  Given I am on deatil page of non shippable pod deal
+  And I click 'Buy' link
+  And I am logged in as user
+  And I wait for 5 seconds
+  And I proceed
+  Then I should be on 'checkout' page
+
+Scenario: checkout for non shippable pod with selecting address
+  Given I am on checkout page of non shippable pod deal
+  And I am logged in as user
+  And I wait for 5 seconds
+  And I proceed
+  And I selcet Pay on Delivery
+  And I click 'select/add your shipping address'
+  And I select first pod address
+  And I proceed with pod address
+  And I click complete order button for pod
+  Then Order should be successful
+  Then I should see 'Thanks for shopping on DealDey!'
+
+Scenario: checkout for non shippable pod with new address
+  Given I am on checkout page of non shippable pod deal
+  And I am logged in as user
+  And I wait for 5 seconds
+  And I proceed
+  And I selcet Pay on Delivery
+  And I click 'select/add your shipping address'
+  And I fill new shipping address for pod
+  And I proceed with new pod address
+  And I click complete order button for pod
+  Then Order should be successful
+  Then I should see 'Thanks for shopping on DealDey!'
+
+Scenario: checkout for non shippable pod without selecting address
+  Given I am on checkout page of non shippable pod deal
+  And I am logged in as user
+  And I wait for 5 seconds
+  And I proceed
+  And I selcet Pay on Delivery
+  And I click 'select/add your shipping address'
+  And I proceed with pod address
+  Then I should see error message on pod popup "Please select a shipping address"
+   

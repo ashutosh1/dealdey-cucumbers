@@ -15,7 +15,7 @@ And /^I click on Sign In button$/ do
 end
 
 Then(/^I should see sign in popup$/) do
-  on(SigninPage).sign_in_popup?
+  assert_equal(true, on(SigninPage).sign_in_popup?)
 end
 
 Given(/^I visit home page and see the sign in popup$/) do
@@ -23,5 +23,5 @@ Given(/^I visit home page and see the sign in popup$/) do
 end
 
 Then /^I should see flash notice "([^\"]*)"$/ do |expected_text|
-  @current_page.flash_notice? && @current_page.flash_notice == expected_text
+  assert_equal(true, @current_page.flash_notice? && (@current_page.flash_notice == expected_text))
 end

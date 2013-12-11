@@ -49,7 +49,7 @@ And /^I click subscribe now$/ do
   on(SubscriptionPopup).register
 end
 
-Then /^I should see error message "([^\"]*)"$/ do |expected_text|
+Then(/^I should see error message "([^\"]*)"$/) do |expected_text|
   @current_page.error_message? && @current_page.error_message == expected_text
 end
 
