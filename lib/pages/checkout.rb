@@ -1,11 +1,14 @@
 class Checkout
   include PageObject
+  include SharedMethods
   
   button(:buy_product, :class => "buyNow")
   label(:pay_on_delivery, :xpath => '/html/body/div[2]/div[4]/div[2]/div[2]/div/div/ul/li[4]/span[2]/label')
+  label(:pay_in_installments, :class => 'rencredit-img')
+
   select_list(:pod_shipping_address_state, :id => "shipping_address_state")
   select_list(:pod_shipping_address_area, :id => "shipping_address_area")
-
+  
   link(:continue_shopping, :text => "Continue shopping")
   link(:proceed_to_payment, :text => "Proceed to Payment")
   link(:view_areas, :id => "view-cod-areas")
@@ -21,8 +24,8 @@ class Checkout
   div(:deal_detail_div, :class => "deal-detail")
   div(:state_select_div, :class => "state-select")
 
-  text_field(:sign_in_email, :id => 'sign_in_email')
-  text_field(:sign_in_password, :id => 'sign_in_password')
+  text_field(:email, :id => 'sign_in_email')
+  text_field(:password, :id => 'sign_in_password')
   text_field(:pod_name, :id => 'cod-name')
   text_field(:pod_address, :id => 'cod-address')
 
@@ -33,8 +36,7 @@ class Checkout
   paragraph(:error_message, :class => 'errorMsg')
 
   unordered_list(:select_address, :xpath => '/html/body/div[2]/div[4]/div[2]/div/div[2]/div[2]/div[2]/form/ul')
-
-  page_url "http://prep.dealdey.com/deals/limited-time-offer"
+  list_item(:rencredit_li, :class => 'rencredit')
   
   def add_to_cart
     div = @browser.find_element(:class => 'form-holder')
@@ -43,7 +45,7 @@ class Checkout
 
   def complete_order
     span = @browser.find_element(:class => "main-button-orange-arrow")
-    span.find_element(:name => "commit", :value => "Complete Order", :type => "submit")
+    span.find_element(:name => "commit", :value => "Complete Order", :type => "submit").click
   end
 
   def sign_in
@@ -56,16 +58,20 @@ class Checkout
     span.find_element(:name => "commit", :value => "Proceed to Payment", :type => "submit").click
   end
 
+  def visit_non_shippable_page
+    @browser.navigate.to(url_to_visit(:non_shippable_deal))
+  end
+
   def visit_shippable_page
-    @browser.navigate.to("http://prep.dealdey.com/deals/black-slazenger-mens-polo-shirt")
+    @browser.navigate.to(url_to_visit(:shippable_deal))
   end
 
   def visit_non_shippable_pod
-    @browser.navigate.to("http://prep.dealdey.com/deals/pod-service-deal-1-2")
+    @browser.navigate.to(url_to_visit(:pod_non_shippable_deal))
   end
 
   def visit_shippable_pod
-    @browser.navigate.to("http://prep.dealdey.com/deals/product-pod-deal-1")
+    @browser.navigate.to(url_to_visit(:pod_shippable_deal))
   end
   
   def click_complete_button
@@ -91,4 +97,24 @@ class Checkout
     self.pod_name = "test add"
     self.pod_address = "1/4 west patel nagar"
   end
+
+  def select_first_address
+    self.select_address_element.click
+  end
+
+  def login_user
+    self.proceed_to_payment
+    populate_page_with data_for("users/admin_first")
+    self.sign_in
+  end
+
+  def continue_payment_in_installation
+    @browser.find_element(:xpath => "/html/body/div[2]/div[4]/div[2]/div[2]/div/div/div/div[5]/div[2]/form/span/input").click
+  end
+
+  def continue_payment
+    @browser.find_element(:xpath => "/html/body/div[2]/div[4]/div[2]/div[2]/div/div/div/div[4]/div[2]/form/span/input").click
+  end
+
 end
+ 

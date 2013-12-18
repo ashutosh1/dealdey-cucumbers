@@ -1,0 +1,33 @@
+home:
+  url: http://vinsol:v1ns0l@dd@prep.dealdey.com 
+  
+shippable_deal:
+  url: /deals/black-slazenger-mens-polo-shirt
+  title: Black Slazenger Men's Polo Shirt
+
+non_shippable_deal:
+  url: /deals/limited-time-offer
+  title: Limited - Time offer
+
+pod_shippable_deal:
+  url: /deals/beaudy-professional-hair-straightene
+  title: Product PoD deal 1
+  
+pod_non_shippable_deal:
+  url: /deals/pod-service-deal-1-2
+  title: PoD Service Deal 1
+
+rencrediteq_deal:
+  url: /deals/its-a-rencredit-deal-3
+  keyword: rencrediteq
+  title: Its a rencredit deal
+
+rencreditmax_deal:
+  url: /deals/its-a-rencredit-deal-2
+  keyword: rencreditmax
+  title: Its a rencredit deal
+
+rencredit_deal:
+  url: /deals/its-a-rencredit-deal
+  title: Its a rencredit deal
+    

@@ -97,6 +97,23 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.1.0)
     require_all (1.3.2)
+    rspec-collection_matchers (0.0.2)
+      rspec-expectations (>= 2.99.0.beta1)
+    rspec-core (3.0.0.beta1)
+    rspec-expectations (3.0.0.beta1)
+      diff-lcs (>= 1.1.3, < 2.0)
+      rspec-support (= 3.0.0.beta1)
+    rspec-mocks (3.0.0.beta1)
+    rspec-rails (3.0.0.beta1)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-collection_matchers
+      rspec-core (= 3.0.0.beta1)
+      rspec-expectations (= 3.0.0.beta1)
+      rspec-mocks (= 3.0.0.beta1)
+    rspec-support (3.0.0.beta1)
     rubyzip (0.9.9)
     selenium-webdriver (2.35.1)
       childprocess (>= 0.2.5)
@@ -135,4 +152,5 @@ DEPENDENCIES
   page-object
   parallel_tests
   require_all
+  rspec-rails (~> 3.0.0.beta)
   selenium-webdriver (~> 2.35.1)

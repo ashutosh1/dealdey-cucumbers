@@ -1,10 +1,13 @@
 require "selenium-webdriver"
 require "selenium/client"
-
+include DataMagic
 Before do | scenario |
+
+  DataMagic.load 'default.yml'
+
   #to run cucumber parallel only below four line is required
   @browser = Selenium::WebDriver.for :firefox
-  @browser.get("http://vinsol:v1ns0l@dd@www.prep.dealdey.com")
+  @browser.get(data_for(:home)["url"])
   @browser.manage.window.maximize
   @browser.manage.timeouts.implicit_wait = 300
   # browser_type = ["*firefox", "*chrome"]
@@ -26,5 +29,5 @@ end
 
 After do
   # @browser.close_current_browser_session
-  # @browser.quit
+  @browser.quit
 end

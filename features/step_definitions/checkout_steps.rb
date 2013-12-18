@@ -1,28 +1,17 @@
 Given(/^I am logged in as user$/) do
-  on(Checkout).proceed_to_payment
-  on(Checkout).sign_in_email= "vijay@vinsol.com"
-  on(Checkout).sign_in_password= "123456"
-  on(Checkout).sign_in
+  on(Checkout).login_user
 end
 
 Given(/^I am on deatil page of deal 'limited\-time\-offer'$/) do
-  visit_page Checkout
+  on(Checkout).visit_non_shippable_page
 end
 
-Given(/^I am on deatil page of shippable deal 'black\-slazenger\-mens\-polo\-shirt'$/) do
+Given(/^I am on deatil page of shippable deal$/) do
   on(Checkout).visit_shippable_page
 end
 
 Then(/^I should see 'Add To Cart' popup$/) do
-  assert_equal(true, on(Checkout).add_to_cart_div?)
-end
-
-And(/^I click 'Add To Cart' button$/) do
-  on(Checkout).add_to_cart
-end
-
-And(/^I click 'buy' button$/) do
-  on(Checkout).buy_product
+  expect(on(Checkout).add_to_cart_div?).to eq(true)
 end
 
 And(/^I wait for 5 seconds$/) do
@@ -30,25 +19,14 @@ And(/^I wait for 5 seconds$/) do
 end
 
 And(/^I am on cart detail page for non shippable item$/) do
-  visit_page Checkout
+  on(Checkout).visit_non_shippable_page
   on(Checkout).buy_product
   on(Checkout).add_to_cart
 end
 
-Then(/^I should see 'Continue shopping' link$/) do
-  assert_equal(true, @current_page.continue_shopping?)
-end
-
-And(/^I click 'Proceed to Payment' link$/) do
-  on(Checkout).proceed_to_payment
-end
-
-And(/^I proceed$/) do
-  @current_page.proceed
-end
-
 Then(/^I should be on 'checkout' page$/) do
-  assert_equal(true, @current_page.complete_order_div? && @current_page.payment_methods_div?)
+  expect(@current_page.complete_order_div?).to eq(true)
+  expect(@current_page.payment_methods_div?).to eq(true)
 end
 
 And(/^I click 'Complete Order' button$/) do
@@ -56,20 +34,19 @@ And(/^I click 'Complete Order' button$/) do
 end
 
 Then(/^Order should be successful$/) do
-  assert_equal(true, @current_page.order_successful?)
+  expect(@current_page.order_successful?).to eq(true)
 end
 
 Then(/^I should see 'Thanks for shopping on DealDey!'$/) do
-  assert_equal(true, @current_page.thanks_message?)
+  expect(@current_page.thanks_message?).to eq(true)
 end
 
-
 Then(/^I should see available cod options$/) do
-  assert_equal(true, @current_page.cod_option?)
+  expect(@current_page.cod_option?).to eq(true)
 end
 
 Then(/^I should see delivery detail$/) do
-  assert_equal(true, @current_page.deal_detail_div?)
+  expect(@current_page.deal_detail_div?).to eq(true)
 end
 
 And(/^I click 'View available area'$/) do
@@ -77,24 +54,20 @@ And(/^I click 'View available area'$/) do
 end
 
 Then(/^I should see states to select in popup$/) do
-  assert_equal(true, @current_page.state_select_div?)
+  expect(@current_page.state_select_div?).to eq(true)
 end
 
-And(/^I add it to cart$/) do
-  on(Checkout).add_to_cart_link
-end
-
-Given(/^I am on cart detail page for shippable item 'black\-slazenger\-mens\-polo\-shirt'$/) do
+Given(/^I am on cart detail page for shippable item$/) do
   on(Checkout).visit_shippable_page
   on(Checkout).add_to_cart_link
 end
 
 Then(/^I should see addresses to select$/) do
-  assert_equal(true, @current_page.select_address?)
+  expect(@current_page.select_address?).to eq(true)
 end
 
 And(/^I select first address$/) do
-  @current_page.select_address_element.click
+  @current_page.select_first_address
 end
 
 Given(/^I am on deatil page of shippable pod deal$/) do
@@ -107,6 +80,7 @@ end
   
 Given(/^I am on checkout page of shippable pod deal$/) do
   on(Checkout).visit_shippable_pod
+  on(Checkout).buy_now_link
   on(Checkout).add_to_cart_link
 end
 
@@ -116,16 +90,12 @@ Given(/^I am on checkout page of non shippable pod deal$/) do
 end
 
 Then(/^I should see pay on delivery section$/) do
-  assert_equal(true, on(Checkout).view_areas && @current_page.state_select_div?)
+  expect(on(Checkout).view_areas && @current_page.state_select_div?).to eq(true)
 end
 
 And(/^I selcet Pay on Delivery and click complete button$/) do
   on(Checkout).pay_on_delivery_element.click
   on(Checkout).click_complete_button
-end
-
-And(/^I click 'Buy' link$/) do
-  on(Checkout).buy_now_link
 end
 
 And(/^I selcet Pay on Delivery$/) do
@@ -158,5 +128,56 @@ And(/^I fill new shipping address for pod$/) do
 end
 
 Then(/^I should see error message on pod popup "Please select a shipping address"$/) do 
-  assert_equal(true, on(Checkout).error_message.visible?)
+  expect(on(Checkout).error_message?).to eq(true)
+end
+
+Given(/^I am on cart deatil page of rencredit max deal$/) do
+  navigate_to(Checkout).login_user
+end
+
+Given(/^I am on checkout page of rencredit max deal$/) do
+  navigate_to(Checkout).login_user
+  @current_page.select_first_address
+  @current_page.proceed_to_payment
+end
+
+Then(/^I should see 'Pay in Installments' option$/) do
+  expect(on(Checkout).pay_in_installments?).to eq(true)
+end
+
+Then(/^I should not see 'Pay in Installments' option$/) do
+  expect(on(Checkout).rencredit_li).to eq("")
+end
+
+And(/^I select 'Pay in Installments' option$/) do
+  on(Checkout).pay_in_installments_element.click
+end
+
+And(/^I click continue$/) do
+  on(Checkout).continue_payment_in_installation
+end
+
+Given(/^I am on checkout page of rencredit max deal with sum greater than max limit$/) do
+  navigate_to(Checkout, :using => :rencreditmax_deal_greater_than_max_limit).login_user
+  @current_page.select_first_address
+  @current_page.proceed_to_payment
+end
+
+And(/^I click continue payment$/) do
+  on(Checkout).continue_payment
+end
+
+Given(/^I am on checkout page of rencredit deal$/) do
+  navigate_to(Checkout, :using => :rencredit_deal).login_user
+  @current_page.select_first_address
+  @current_page.proceed_to_payment
+end
+
+Then(/^I should see two products in my cart on cart page$/) do
+  expect(@browser.find_elements(:css => ".cart_item_area").size).to be >= 2
+end
+
+Given(/^I am on checkout page with rencredit and normal product$/) do 
+  navigate_to(DealDetailPage, :using => :rencreditmax_deal).add_to_cart_link
+  navigate_to(DealDetailPage, :using => :non_rencredit_deal).add_to_cart
 end

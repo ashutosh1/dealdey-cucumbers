@@ -57,11 +57,11 @@ Then /^I should see subscription notice "([^\"]*)"$/ do |expected_text|
   @current_page.subscription_notice? && @current_page.subscription_notice.should == expected_text
 end
 
-Then /^I should see "([^\"]*)"$/ do |expected_text|
-  @current_page.text.should include expected_text
+Then(/^I should see "([^\"]*)"$/) do |expected_text|
+  expect(@current_page.text).to include(expected_text)
 end
 
-Then /^I should not see "([^\"]*)"$/ do |expected_text|
-  @current_page.text.should_not include expected_text
+Then(/^I should not see "([^\"]*)"$/) do |expected_text|
+  expect(@current_page.text).to_not include(expected_text)
 end
 

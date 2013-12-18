@@ -9,7 +9,7 @@ class SigninPage
   link(:sign_in_link, :text => "Sign In")
 
   div(:sign_in_popup, :id => "signin_popup_form")
-  div(:error_message, :class => "error")
+  div(:error_message, :class => "alert")
   div(:flash_notice, :class => "notice")
  
   def sign_in
