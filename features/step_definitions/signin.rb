@@ -1,9 +1,9 @@
 And /^I fill sign in email with "(.*?)"$/ do |email|
-  on(SigninPage).sign_in_email= email
+  on(SigninPage).email= email
 end
 
 And /^I fill sign in password with "(.*?)"$/ do |password|
-  on(SigninPage).sign_in_password= password
+  on(SigninPage).password= password
 end
 
 And /^I click Sign In link$/ do
@@ -22,3 +22,6 @@ Given(/^I visit home page and see the sign in popup$/) do
   on(SigninPage).sign_in_link
 end
 
+Given(/^I am signed in as user$/) do
+  on(SigninPage).signed_in_user
+end

@@ -6,7 +6,7 @@ class Search
   div(:search_deals_div, :id => 'searched_deals')
   div(:deals_div, :id => 'deals')
   div(:search_page, :id => 'search_page')
-  div(:search_text, :id => 'subCat')
+  div(:search_text, :class => 'subCat')
   
   h2(:search_header, :class => 'search')
   h3(:search_result_header, :class => 'title')

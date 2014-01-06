@@ -1,6 +1,6 @@
 class Checkout
   include PageObject
-  include SharedMethods
+  include UrlHelper
   
   button(:buy_product, :class => "buyNow")
   label(:pay_on_delivery, :xpath => '/html/body/div[2]/div[4]/div[2]/div[2]/div/div/ul/li[4]/span[2]/label')
@@ -12,13 +12,11 @@ class Checkout
   link(:continue_shopping, :text => "Continue shopping")
   link(:proceed_to_payment, :text => "Proceed to Payment")
   link(:view_areas, :id => "view-cod-areas")
-  link(:sign_in_link, :text => "Sign In")
   link(:add_to_cart_link, :text => "Add To Cart")
   link(:buy_now_link, :text => "Buy Now")
   link(:pop_up_address, :id => "pop-up-address")
 
   div(:add_to_cart_div, :class => "form-holder")
-  div(:flash_notice, :class => "notice")
   div(:complete_order_div, :class => "complete-order")
   div(:payment_methods_div, :class => "payment-methods")
   div(:deal_detail_div, :class => "deal-detail")

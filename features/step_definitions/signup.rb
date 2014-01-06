@@ -7,8 +7,10 @@ Given(/^I click sign up link$/) do
 end
 
 Then(/^I should see error messages on all field$/) do
-  SignupPage::DEFAULT_ATTR.each do |val|   
-    on(SignupPage).check_errors?(val)
+  SignupPage::DEFAULT_ATTR.each do |key, val|
+    unless key == "password_confirmation"  
+      expect(on(SignupPage).check_errors?(key)).to eq(true)
+    end
   end
 end
 
@@ -33,5 +35,5 @@ Given(/^I fill all the field$/) do
 end
 
 Then(/^I should see error in sign up "(.*?)"$/) do |expected_text|
-  @current_page.error_message.should == expected_text
+  expect(@current_page.error_message == expected_text).to eq(true)
 end

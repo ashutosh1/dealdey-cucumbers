@@ -5,3 +5,11 @@ admin_first:
 admin_second:
   email: vij102@mailinator.com
   password: 123456
+
+user_update_data: 
+  firstname: vijaytest
+  lastname: test  
+
+user_revert_data:
+  firstname: vijay 
+  lastname: test 

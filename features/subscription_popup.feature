@@ -1,7 +1,7 @@
-Feature: http_basic_auth login
-  As an admin i need to make sure only authorize people could access the staging
+Feature: subscription popup
+  As a user i can subscribe deals
   
-Scenario: http_basic_auth login
+Scenario: subscription popup
   Given I visit home page
   Then I should see subscription popup
   Then I should see span having number to call

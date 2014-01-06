@@ -4,8 +4,8 @@ class SignupPage
   DEFAULT_USER = {
     "firstname" => "Dealdey",
     "lastname" => "cucumber",
-    "email" => "cucks7@example.com",
-    "mobile" => "08119781160",
+    "email" => "cucks9@example.com",
+    "mobile" => "08119786160",
     "gender" => "Male",
     "age_bracket" => "18-25",
     "password" => "deal123",
@@ -30,7 +30,6 @@ class SignupPage
 
   paragraph(:error_message, :class => 'errorMsg')
   links(:error_message_para, :class => 'errorMsg')
-  div(:flash_notice, :class => "notice")
 
   def sign_up
     popup = @browser.find_element(:class => 'register')
@@ -50,7 +49,7 @@ class SignupPage
   end
 
   def check_errors?(val)
-    self.error_message_para_elements.collect{|i| i.text}.include?(val + "can't be blank")
+    self.error_message_para_elements.collect{|i| i.text}.include?(val + " can't be blank")
   end
   
 end

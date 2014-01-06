@@ -2,19 +2,19 @@ Given(/^I visit home page$/) do
 end
 
 Then(/^I should see subscription popup$/) do
-  on(SubscriptionPopup).subscription_popup?
+  expect(on(SubscriptionPopup).subscription_popup?).to eq(true)
 end
 
 Then(/^I should see pod text$/) do
-  on(SubscriptionPopup).pod_text?
+  expect(on(SubscriptionPopup).pod_text?).to eq(true)
 end
 
 Then(/^I should see span having number to call$/) do
-  on(SubscriptionPopup).call?
+  expect(on(SubscriptionPopup).call?).to eq(true)
 end
 
 Then(/^I should see subscribe now button for subscription popup$/) do
-  @browser.find_element(:name => "commit", :value => "Subscribe Now").displayed?
+  expect(@browser.find_element(:name => "commit", :value => "Subscribe Now").displayed?).to eq(true)
 end
 
 Then(/^I closed the subscription popup$/) do
@@ -22,23 +22,23 @@ Then(/^I closed the subscription popup$/) do
 end
 
 Then(/^I should see unordered sign in and sign up header links$/) do
-  on(SubscriptionPopup).header_link?
+  expect(on(SubscriptionPopup).header_link?).to eq(true)
 end
 
 Then(/^I should see sign in list and link$/) do
-  on(SubscriptionPopup).sign_in?
+  expect(on(SubscriptionPopup).sign_in?).to eq(true)
 end
 
 Then(/^I should see sign up list and link$/) do
-  on(SubscriptionPopup).sign_up?
+  expect(on(SubscriptionPopup).sign_up?).to eq(true)
 end
 
 Then(/^I should see sign in link$/) do
-  on(SubscriptionPopup).sign_in_link?
+  expect(on(SubscriptionPopup).sign_in_link?).to eq(true)
 end
 
 Then(/^I should see sign up link$/) do
-  on(SubscriptionPopup).sign_up_link?
+  expect(on(SubscriptionPopup).sign_up_link?).to eq(true)
 end
 
 When /^I enter "(.*?)" into email field$/ do |email|
@@ -50,11 +50,11 @@ And /^I click subscribe now$/ do
 end
 
 Then(/^I should see error message "([^\"]*)"$/) do |expected_text|
-  @current_page.error_message? && @current_page.error_message == expected_text
+  expect(@current_page.error_message? && @current_page.error_message == expected_text).to eq(true)
 end
 
 Then /^I should see subscription notice "([^\"]*)"$/ do |expected_text|
-  @current_page.subscription_notice? && @current_page.subscription_notice.should == expected_text
+  expect(@current_page.subscription_notice? && @current_page.subscription_notice.should == expected_text).to eq(true)
 end
 
 Then(/^I should see "([^\"]*)"$/) do |expected_text|

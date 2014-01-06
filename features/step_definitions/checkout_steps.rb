@@ -1,4 +1,4 @@
-Given(/^I am logged in as user$/) do
+And(/^I am logged in as user$/) do
   on(Checkout).login_user
 end
 
@@ -178,6 +178,6 @@ Then(/^I should see two products in my cart on cart page$/) do
 end
 
 Given(/^I am on checkout page with rencredit and normal product$/) do 
-  navigate_to(DealDetailPage, :using => :rencreditmax_deal).add_to_cart_link
+  navigate_to(DealDetailPage, :using => :rencredit_deal).add_to_cart_link
   navigate_to(DealDetailPage, :using => :non_rencredit_deal).add_to_cart
 end

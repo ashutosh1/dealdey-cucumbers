@@ -1,6 +1,6 @@
 class DealDetailPage
   include PageObject
-  include SharedMethods
+  include UrlHelper
   
   #shipppable deals on detail page as popup
   link(:add_to_cart_link, :text => "Add To Cart")
