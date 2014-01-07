@@ -9,6 +9,7 @@ class SigninPage
   link(:sign_in_link, :text => "Sign In")
 
   div(:sign_in_popup, :id => "signin_popup_form")
+  divs(:error_message, :class => "alert")
  
   def sign_in
   	span = @browser.find_element(:class => 'signin-box-splash')

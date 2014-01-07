@@ -2,7 +2,6 @@ class SubscriptionPopup
   include PageObject
 
   div(:subscription_popup, :id => 'new_city_select')
-  div(:error_message, :class => "error")
 
   text_field(:subscription_email, :id => 'email_subscription_email')
 

@@ -26,13 +26,13 @@ Scenario: sign in for subscription with invalid email
   Given I visit home page
   And I enter "test" into email field
   And I click subscribe now 
-  Then I should see error message "Email is invalid"
+  Then I should see flash error "Email is invalid"
 
 Scenario: sign in for subscription with blank email
   Given I visit home page
   And I enter "" into email field
   And I click subscribe now 
-  Then I should see error message "Email can't be blank"
+  Then I should see flash error "Email can't be blank"
 
 Scenario: sign in for subscription with valid email
   Given I visit home page

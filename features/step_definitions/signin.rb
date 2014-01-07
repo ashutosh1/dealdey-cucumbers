@@ -12,6 +12,7 @@ end
 
 And /^I click on Sign In button$/ do
   on(SigninPage).sign_in
+  sleep(5)
 end
 
 Then(/^I should see sign in popup$/) do
@@ -24,4 +25,8 @@ end
 
 Given(/^I am signed in as user$/) do
   on(SigninPage).signed_in_user
+end
+
+Then(/^I should see error message "([^\"]*)"$/) do |expected_text|
+  expect(@current_page.error_message_elements[-1].element.text).to eq(expected_text)
 end

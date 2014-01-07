@@ -49,7 +49,7 @@ Scenario: delete shipping address
 Scenario: update password with wrong current password
   Given I am on update update password page
   And I update password with wrong current password
-  Then I should see error message "Current password is invalid"
+  Then I should see flash error "Please correct below errors before continuing"
 
 Scenario: update password
   Given I am on update update password page

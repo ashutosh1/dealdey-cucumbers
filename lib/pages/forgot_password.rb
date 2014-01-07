@@ -1,7 +1,6 @@
 class ForgotPassword
   include PageObject
 
-  div(:error_message, :class => "error")
   div(:forget_password_page, :class => "forgotPassword")
   
   text_field(:user_email_for_resend, :xpath => '/html/body/div[2]/div[6]/div[2]/div/form/ul/li/input')

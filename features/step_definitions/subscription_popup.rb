@@ -14,7 +14,8 @@ Then(/^I should see span having number to call$/) do
 end
 
 Then(/^I should see subscribe now button for subscription popup$/) do
-  expect(@browser.find_element(:name => "commit", :value => "Subscribe Now").displayed?).to eq(true)
+  popup = @browser.find_element(:class => 'new_email_subscription')
+  expect(popup.find_element(:name => "commit", :value => "Subscribe Now", :type => "submit").displayed?).to eq(true)
 end
 
 Then(/^I closed the subscription popup$/) do
@@ -49,12 +50,8 @@ And /^I click subscribe now$/ do
   on(SubscriptionPopup).register
 end
 
-Then(/^I should see error message "([^\"]*)"$/) do |expected_text|
-  expect(@current_page.error_message? && @current_page.error_message == expected_text).to eq(true)
-end
-
 Then /^I should see subscription notice "([^\"]*)"$/ do |expected_text|
-  expect(@current_page.subscription_notice? && @current_page.subscription_notice.should == expected_text).to eq(true)
+  expect(@current_page.subscription_notice? && @current_page.subscription_notice == expected_text).to eq(true)
 end
 
 Then(/^I should see "([^\"]*)"$/) do |expected_text|
