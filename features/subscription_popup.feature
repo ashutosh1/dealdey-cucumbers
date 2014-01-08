@@ -11,14 +11,14 @@ Scenario: subscription popup
 Scenario: list of sign in and signup
   Given I visit home page
   Then I should see subscribe now button for subscription popup
-  And I closed the subscription popup
+  And I close the subscription popup
   Then I should see unordered sign in and sign up header links
   Then I should see sign in list and link 
   Then I should see sign up list and link
 
 Scenario: sign in and signup links
   Given I visit home page
-  And I closed the subscription popup
+  And I close the subscription popup
   Then I should see sign in link
   Then I should see sign up link
 

@@ -5,7 +5,6 @@ class SigninPage
   text_field(:password, :id => 'sign_in_password')
 
   link(:forget_password_link, :text => "Forgot password?")
-  link(:close_subscription, :class => 'no-subscription')
   link(:sign_in_link, :text => "Sign In")
 
   div(:sign_in_popup, :id => "signin_popup_form")

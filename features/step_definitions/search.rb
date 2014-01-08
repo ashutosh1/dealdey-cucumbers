@@ -1,7 +1,3 @@
-And(/^I close the subscription popup$/) do
-  on(SigninPage).close_subscription
-end
-
 Then(/^I should see search form$/) do
   expect(on(Search).search_form?).to eq(true)
 end

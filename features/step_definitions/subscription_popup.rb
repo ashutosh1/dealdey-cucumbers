@@ -18,7 +18,7 @@ Then(/^I should see subscribe now button for subscription popup$/) do
   expect(popup.find_element(:name => "commit", :value => "Subscribe Now", :type => "submit").displayed?).to eq(true)
 end
 
-Then(/^I closed the subscription popup$/) do
+And(/^I close the subscription popup$/) do
   on(SubscriptionPopup).close_subscription
 end
 
