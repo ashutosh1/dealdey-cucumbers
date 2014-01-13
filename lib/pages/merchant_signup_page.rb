@@ -7,6 +7,12 @@ class MerchantSignupPage
   link(:sign_in_link, :class => "signin_link")
   paragraphs(:error_message, :class => 'errorMsg')
 
+  #merchant forget password
+  div(:forget_password_page, :class => "merchantForgotPassword")
+  text_field(:user_email_for_resend) do|page|
+    page.div_element(:class => "merchantForgotPassword").text_field_element(:id => 'merchant_email')
+  end
+
   #merchant sign in form
   div(:merchant_sign_in_div, :id => "merchant_sign_in_popup")
   divs(:error_message, :class => "error")

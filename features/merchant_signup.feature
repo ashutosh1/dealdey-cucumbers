@@ -102,3 +102,27 @@ Scenario: submit form with promo offer
   And I submit the signup form
   Then I should see flash notice "You have signed up successfully. Your login details have been sent to you through email. You will be able to login once your account is activated by the administrator."  
 
+Scenario: forget password page
+  And I click sign in as merchant link
+  And I click forget password link
+  Then I should be on merchant forget password page
+
+Scenario: submit forget password form without email
+  And I click sign in as merchant link
+  And I click forget password link
+  And I click Send me reset password instructions
+  Then I should see error "Email can't be blank"
+
+Scenario: submit forget password form with wrong email
+  And I click sign in as merchant link
+  And I click forget password link    
+  And I fill merchant email for resend instruction with "test@example.com"
+  And I click Send me reset password instructions
+  Then I should see error "Email not found"
+
+Scenario: submit forget password form with correct email
+  And I click sign in as merchant link
+  And I click forget password link    
+  And I fill merchant email for resend instruction with "merchant@mailinator.com"  
+  And I click Send me reset password instructions
+  Then I should see flash notice "You will receive an email with an option to change password."

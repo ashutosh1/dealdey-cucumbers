@@ -12,4 +12,10 @@ user_update_data:
 
 user_revert_data:
   firstname: vijay 
-  lastname: test 
+  lastname: test
+
+user_first:
+  email: "user@mailinator.com"
+
+merchant_first:
+  email: "merchant@mailinator.com"  

@@ -64,7 +64,14 @@ And(/^I submit merchant sign in form$/) do
   on(MerchantSignupPage).populate_merchant_signup_form
 end
 
-
 Then(/^I should be on merchant home page$/) do
   expect(on(MerchantSignupPage).promo_offer_div?).to eq(true)
+end
+
+Then(/^I should be on merchant forget password page$/) do
+  expect(on(MerchantSignupPage).forget_password_page?).to eq(true)
+end
+
+And(/^I fill merchant email for resend instruction with "(.*?)"$/) do |email|
+  on(MerchantSignupPage).user_email_for_resend = email
 end

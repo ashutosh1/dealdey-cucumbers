@@ -23,6 +23,6 @@ Scenario: submit with non existing email
   Then I should see error "Email not found"
 
 Scenario: submit with correct email
-  And I fill email for resend instruction with "abcd@gmail.com"
+  And I fill email for resend instruction with "user@mailinator.com"
   And I click Send me reset password instructions
   Then I should see flash notice "You will receive an email with an option to change password."
