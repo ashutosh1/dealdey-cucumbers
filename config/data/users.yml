@@ -18,4 +18,7 @@ user_first:
   email: "user@mailinator.com"
 
 merchant_first:
-  email: "merchant@mailinator.com"  
+  email: "merchant@mailinator.com"
+
+merchant_with_invalid_subscription:
+  email: "merchant2@mailinator.com"  

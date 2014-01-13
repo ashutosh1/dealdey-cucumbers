@@ -2,7 +2,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), 'apps/dealdey_prep/cu
 require 'yaml/store'
 yml_file =  YAML::Store.new "#{Dir.home}/default.yml"
 yml_file.transaction do 
-  yml_file[:home] = {url: "http://vinsol:v1ns0l@dd@prep.dealdey.com"}
+  yml_file["home"] = {"url" => "http://vinsol:v1ns0l@dd@prep.dealdey.com"}
 end
 
 `chmod +x ~/deals_data.yml`
@@ -21,7 +21,7 @@ deals_type.each do |type|
   deal.save!
   
   yml_file.transaction do
-    yml_file[type] = {url: "/deals/#{deal.permalink}", title: deal.title}
+    yml_file[type] = {"url" => "/deals/#{deal.permalink}", "title" => deal.title}
   end
 
 end
