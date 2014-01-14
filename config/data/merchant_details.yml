@@ -8,4 +8,20 @@ first:
 
 merchant_signin_credential:
   merchant_email: dealdey@gmail.com
-  merchant_password: qZYyQLb3  
+  merchant_password: qZYyQLb3
+
+merchant_with_valid_subscription:
+  merchant_email: merchant@mailinator.com
+  merchant_password: merch@123
+
+merchant_with_invalid_subscription:
+  merchant_email: merchant2@mailinator.com
+  merchant_password: merch2@123
+
+merchant_promo_details:  
+  promo_url: http://www.dealdey.com
+  promo_code: DL12002
+  business_address: ~street_address
+  coupon_title: ~title
+  coupon_keywords: ~first_name
+  
