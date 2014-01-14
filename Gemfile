@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
   gem 'cucumber-rails', :require => false
-  gem 'selenium-webdriver', '~> 2.35.1'
+  gem 'selenium-webdriver', '~> 2.38.0'
   gem 'page-object'
   gem 'parallel_tests'
   gem 'require_all'

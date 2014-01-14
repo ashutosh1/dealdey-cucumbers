@@ -52,3 +52,15 @@ Scenario: As a merchant with Invalid subscription submit promo offer
   And I submit promo offer
   Then I should see flash notice "Your Promo request has been received. You will be notified by email once your Promo is approved by the administrator. Please update your subscription with one of our available subscription plans to ensure your Promos visibility."
 
+@home_page
+Scenario: On merchant home page
+  And I am on merchant home page
+  Then I should see promo offer form
+  Then I should see "Logout" link for merchant
+  Then I should see "My Account" link for merchant
+  Then I should see "Contact" link for merchant
+
+Scenario: On merchant home page as merchant with invalid subscription
+  And I am logged in as merchant with invalid subscription
+  Then I should see subscription info
+  Then I should see "Proceed To Payment" link for merchant

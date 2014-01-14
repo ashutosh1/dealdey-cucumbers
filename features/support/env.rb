@@ -7,8 +7,8 @@ require 'page-object'
 require 'page-object/page_factory'
 require 'require_all'
 
-require_all '/home/ashutosh/dealdey-cucumbers/lib/shared/*.rb'
-require_all '/home/ashutosh/dealdey-cucumbers/lib/pages/*.rb'
+require_all './lib/shared/*.rb'
+require_all './lib/pages/*.rb'
 
 World(PageObject::PageFactory)
     

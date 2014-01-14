@@ -8,15 +8,20 @@ class MerchantHomePage
   text_field(:business_address, :id => "discount_coupon_business_address")
   text_field(:coupon_title, :id => "discount_coupon_title")
   text_field(:coupon_keywords, :id => "discount_coupon_keywords")
-  # in_frame(:id => 'discount_coupon_description_ifr') do |frame|
-  #   element(:promo_description, :body, :id => 'tinymce')
-  # end
-  
   text_field(:coupon_start_date, :id => "discount_coupon_start_date")
   text_field(:coupon_end_date, :id => "discount_coupon_end_date")
   paragraphs(:error_message, :class => 'errorMsg')
   text_field(:merchant_email, :id => "merchant_email")
   text_field(:merchant_password, :id => "merchant_password")
+  form(:promo_offer_form, :id => 'new_discount_coupon')
+  link(:logout, :text => "Logout")
+  link(:my_account, :text => "My Account")  
+  link(:contact, :text => "Contact")
+
+  link(:proceed_to_payment, :text => "Proceed To Payment")
+  div(:merchant_notice, :id => "merchant-notice")
+  div(:merchant_welcome, :class => "merchant_welcome")
+  span(:cancel_subscription, :class => "cancel-image")
 
   def save_promo
     div = @browser.find_element(:class => "submit-form")
@@ -61,6 +66,10 @@ class MerchantHomePage
   def partial_populate_promo(data = {})
     data = data_for("merchant_details/merchant_promo_details").merge(data)    
     populate_page_with data
+  end
+  
+  def subscription_info?
+    self.merchant_notice? && self.merchant_welcome? && self.cancel_subscription?
   end
 
 end

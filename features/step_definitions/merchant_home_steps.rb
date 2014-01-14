@@ -27,3 +27,19 @@ end
 And(/^I fill promo offer form$/) do
   on(MerchantHomePage).populate_promo
 end 
+
+And(/^I am on merchant home page$/) do
+  on(MerchantHomePage).sign_in_merchant("merchant_with_valid_subscription")
+end 
+
+Then(/^I should see promo offer form$/) do
+  expect(on(MerchantHomePage).promo_offer_form?).to eq(true)
+end 
+
+Then(/^I should see "([^\"]*)" link for merchant$/) do|link|
+  expect(on(MerchantHomePage).send("#{link.downcase.gsub(' ', '_')}?")).to eq(true)
+end
+
+Then(/^I should see subscription info$/) do
+  expect(on(MerchantHomePage).subscription_info?).to eq(true)
+end
