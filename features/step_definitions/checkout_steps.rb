@@ -87,6 +87,7 @@ end
 Given(/^I am on checkout page of non shippable pod deal$/) do
   on(Checkout).visit_non_shippable_pod
   on(Checkout).buy_now_link
+  on(Checkout).add_to_cart_link
 end
 
 Then(/^I should see pay on delivery section$/) do
