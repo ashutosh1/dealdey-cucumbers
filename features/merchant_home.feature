@@ -64,3 +64,7 @@ Scenario: On merchant home page as merchant with invalid subscription
   And I am logged in as merchant with invalid subscription
   Then I should see subscription info
   Then I should see "Proceed To Payment" link for merchant
+
+Scenario: On merchant home page as merchant with valid subscription
+  And I am logged in as merchant with valid subscription
+  Then I should not see subscription info

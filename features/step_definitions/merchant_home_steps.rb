@@ -43,3 +43,7 @@ end
 Then(/^I should see subscription info$/) do
   expect(on(MerchantHomePage).subscription_info?).to eq(true)
 end
+
+Then(/^I should not see subscription info$/) do
+  expect(on(MerchantHomePage).subscription_info?).to eq(false)
+end

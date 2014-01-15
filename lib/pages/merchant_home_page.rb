@@ -20,7 +20,9 @@ class MerchantHomePage
 
   link(:proceed_to_payment, :text => "Proceed To Payment")
   div(:merchant_notice, :id => "merchant-notice")
-  div(:merchant_welcome, :class => "merchant_welcome")
+  div(:merchant_welcome)do|page|
+    page.div_element(:id => "merchant-notice").div_element(:class => "merchant_welcome")
+  end
   span(:cancel_subscription, :class => "cancel-image")
 
   def save_promo
@@ -69,7 +71,7 @@ class MerchantHomePage
   end
   
   def subscription_info?
-    self.merchant_notice? && self.merchant_welcome? && self.cancel_subscription?
+    self.merchant_notice != ""
   end
 
 end
