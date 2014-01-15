@@ -107,11 +107,9 @@ class Checkout
   end
 
   def continue_payment_in_installation
-    @browser.find_element(:xpath => "/html/body/div[2]/div[4]/div[2]/div[2]/div/div/div/div[5]/div[2]/form/span/input").click
-  end
-
-  def continue_payment
-    @browser.find_element(:xpath => "/html/body/div[2]/div[4]/div[2]/div[2]/div/div/div/div[4]/div[2]/form/span/input").click
+    div = @browser.find_element(:id => "rencredit_mode")
+    span = div.find_element(:class => "main-button-orange-arrow")
+    span.find_element(:name => "commit", :type => "submit", :value => "Continue").click
   end
 
 end

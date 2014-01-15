@@ -163,21 +163,12 @@ Given(/^I am on checkout page of rencredit max deal with sum greater than max li
   @current_page.proceed_to_payment
 end
 
-And(/^I click continue payment$/) do
-  on(Checkout).continue_payment
-end
-
 Given(/^I am on checkout page of rencredit deal$/) do
   navigate_to(Checkout, :using => :rencredit_deal).login_user
   @current_page.select_first_address
   @current_page.proceed_to_payment
 end
 
-Then(/^I should see two products in my cart on cart page$/) do
-  expect(@browser.find_elements(:css => ".cart_item_area").size).to be >= 2
-end
-
-Given(/^I am on checkout page with rencredit and normal product$/) do 
-  navigate_to(DealDetailPage, :using => :rencredit_deal).add_to_cart_link
-  navigate_to(DealDetailPage, :using => :non_rencredit_deal).add_to_cart
+Then(/^I should see (\d+) products in my cart on cart page$/) do|val|
+  expect(@browser.find_elements(:css => ".cart_item_area").collect{|elem| elem.displayed?}.select{|valu| valu if valu}.compact.size).to eq(val.to_i)
 end

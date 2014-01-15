@@ -1,37 +1,34 @@
 shippable_deal:
   title: Black Slazenger Mens Polo Shirt
   is_product_deal: true
-  product_group_id: 57
-  category_id: 74
   sku_number: DD2444
   returns: "Lorem ipsum dolor sit amet.Lorem ipsum dol..."
   
 non_shippable_deal:
   title: Limited - Time offer
   shippable: false
-  category_id: 45
+  shippable_states: 0
   sku_number: DD2440
-  hide_timer: true
-  christmas_store: true
   keywords: test
-  business_id: 27
+  
 pod_shippable_deal:
   title: Beaudy Professional Hair Straightene
-  category_id: 55
-  sku_number: DD2439
-  christmas_store: true
-  business_id: 27
-pod_non_shippable_deal:
-  title: PoD Service Deal 1
-  shippable_states: 0
-  category_id: 48
   sku_number: DD2439
   
+pod_non_shippable_deal:
+  title: PoD Service Deal 1
+  is_product_deal: false
+  shippable: false
+  shippable_states: 0
+  sku_number: DD2439
+  shippable: false
+
 rencreditmax_deal:
   title: Its a rencredit deal
   cod_available: false
-  product_group_id: 57
-  category_id: 49
+  list_price: 50000
+  discounted_price: 50000
+  is_product_deal: true
   sku_number: DD2426
   rencredit_purchasable: true
   returns: "Lorem ipsum dolor sit amet.Lorem ipsum dol..."
@@ -40,20 +37,19 @@ rencreditmax_deal:
 rencredit_deal:
   title: Its a rencredit deal
   cod_available: false
-  product_group_id: 57
-  category_id: 49
+  is_product_deal: true
   sku_number: DD2450
   rencredit_purchasable: true
   returns: "Lorem ipsum dolor sit amet.Lorem ipsum dol..."
   
 shared:
-  description: "<p>Lorem ipsum dolor sit amet.&nbsp;Lorem ipsum dol..."
+  description: "Lorem ipsum dolor sit amet.&nbsp;Lorem ipsum dol..."
   list_price: 4444.4
   discounted_price: 3333.3
   commission: 111.0
   minimum_limit: 1
-  maximum_limit: 11
-  user_upper_limit: 11
+  maximum_limit: 100
+  user_upper_limit: 100
   address_line1: "2/6 West Patel Nagar"
   address_line2: "Lorem ipsum dolor sit"
   sms_text: "Lorem ipsum dolor sit amet. "
@@ -70,7 +66,6 @@ shared:
   hide_timer: false
   show_home_page: true
   christmas_store: false
-  business_id: 28
   highlights: "<p>abc</p>"
   fine_prints: "<p>abc</p>"
   delivery: "test"

@@ -39,7 +39,7 @@ Scenario: options for shippable product on detail page
 Scenario: add shippable product to cart
   Given I am on deatil page of shippable deal
   And I add it to cart
-  Then I should see flash notice "Black Slazenger Men's Polo Shirt was successfully added to your cart"
+  Then I should see flash notice "Black Slazenger Mens Polo Shirt was successfully added to your cart"
 
 Scenario: on checkout of shippable item
   Given I am on cart detail page for shippable item
@@ -63,13 +63,11 @@ Scenario: shippable pod deals
 Scenario: add shippable pod deals to cart
   Given I am on deatil page of shippable pod deal
   And I click 'buy' button
-  And I add it to cart
   Then I should see flash notice "Beaudy Professional Hair Straightene was successfully added to your cart"
 
 Scenario: on checkout of shippable pod
   Given I am on deatil page of shippable pod deal
   And I click 'buy' button
-  And I add it to cart
   And I click 'Proceed to Payment' link
   And I am logged in as user
   And I wait for 5 seconds
@@ -92,7 +90,7 @@ Scenario: non shippable pod deals
   Given I am on deatil page of non shippable pod deal
   Then I should see pay on delivery section
   
-Scenario: add shippable pod deals to cart
+Scenario: add non shippable pod deals to cart
   Given I am on deatil page of non shippable pod deal
   And I click 'Buy' link
   Then I should see flash notice "PoD Service Deal 1 was successfully added to your cart"
@@ -179,7 +177,7 @@ Scenario: Complete order for rencredit deals
 Scenario: Order sum is greter than 500000 rencredit deals to cart
   Given I am on checkout page of rencredit max deal with sum greater than max limit
   And I select 'Pay in Installments' option
-  And I click continue payment
+  And I click continue
   Then I should see "Your order cost exceeds the maximum limit allowed for a Rencredit order which is N 500000. Please remove some items from your cart to proceed with the order."
 
 Scenario: Order sum is less than 30000 for rencredit deals 
@@ -190,11 +188,14 @@ Scenario: rencredit deals with multiple order
   Given I am on deatil page of rencredit max deal
   And I add it to cart
   And I am on cart detail page for non shippable item
-  Then I should see two products in my cart on cart page
+  Then I should see 2 products in my cart on cart page
 
 Scenario: rencredit deals with multiple order
-  Given I am on checkout page with rencredit and normal product
+  Given I am on cart detail page for non shippable item
+  Given I am on cart deatil page of rencredit max deal
+  And I select first address
+  And I click 'Proceed to Payment' link  
   And I select 'Pay in Installments' option
-  And I click continue payment
+  And I click continue
   Then I should see flash notice "Only below listed items are available under Rencredit Installment Payment Option."
-  Then I should see only rencredit product
+  Then I should see 1 products in my cart on cart page
