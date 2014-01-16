@@ -48,7 +48,7 @@ class MerchantSignupPage
   end
 
   def signin_and_signup_links?
-	  self.sign_up? && self.sign_in?
+	  self.sign_up? && self.sign_in_link?
   end
 
 	def populate_merchant(data = {})
