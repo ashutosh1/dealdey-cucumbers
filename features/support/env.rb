@@ -16,5 +16,6 @@ PageObject::PageFactory.routes = {
   :default => [[DealDetailPage,:visit_rencreditmax_deal], [DealDetailPage,:add_to_cart_link], [Checkout, :login_user]],
   :rencreditmax_deal_greater_than_max_limit => [[DealDetailPage,:visit_rencreditmax_deal], [DealDetailPage,:select_quantity],[DealDetailPage,:add_to_cart_link], [Checkout, :login_user]],
   :rencredit_deal => [[DealDetailPage,:visit_rencredit_deal], [DealDetailPage,:add_to_cart_link], [Checkout, :login_user]],
-  :non_rencredit_deal => [[DealDetailPage,:visit_non_rencredit_deal], [Checkout,:buy_product], [Checkout, :add_to_cart]] 
+  :non_rencredit_deal => [[DealDetailPage,:visit_non_rencredit_deal], [Checkout,:buy_product], [Checkout, :add_to_cart]], 
+  :merchant_account_page => [[MerchantSignupPage, :register_as_merchant],[MerchantSignupPage, :sign_in_link], [MerchantHomePage, :sign_in_merchant]]
 }

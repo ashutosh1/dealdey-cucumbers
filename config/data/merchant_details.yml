@@ -25,3 +25,12 @@ merchant_promo_details:
   coupon_title: ~title
   coupon_keywords: ~first_name
   
+change_merchant_password:
+  current_password: merch@123
+  new_password: merch@1234
+  confirm_password: merch@1234
+
+reset_merchant_password:
+  current_password: merch@1234
+  new_password: merch@123
+  confirm_password: merch@123

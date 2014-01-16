@@ -5,8 +5,7 @@ class MerchantSignupPage
   link(:register_as_merchant, :text => "Register as a Merchant")
   link(:sign_up, :href => "/get_featured", :class => "signup")
   link(:sign_in_link, :class => "signin_link")
-  paragraphs(:error_message, :class => 'errorMsg')
-
+  
   #merchant forget password
   div(:forget_password_page, :class => "merchantForgotPassword")
   text_field(:user_email_for_resend) do|page|
@@ -52,18 +51,10 @@ class MerchantSignupPage
 	  self.sign_up? && self.sign_in?
   end
 
-  def check_errors?(val)
-	  self.error_message_elements.collect(&:text).include?(val + " can't be blank")
-  end
-
 	def populate_merchant(data = {})
 	  data = data_for("merchant_details/first").merge(data)
 	  populate_page_with data
     self.category_element[1].click
-  end
-
-  def check_inline_errors?(msg)
-    self.error_message_elements.collect(&:text).include?(msg)
   end
 
   def sign_in

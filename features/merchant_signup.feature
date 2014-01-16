@@ -30,7 +30,7 @@ Scenario: submit blank form
   Given I am on merchant signup page
   And I submit the signup form
   Then I should see flash error "Please fix the below mentioned errors to continue."
-  Then I should see inline error on all field  
+  Then I should see inline error on all "MerchantSignupPage::MERCHANT_ATTR"
 
 Scenario: submit form with blank name
   Given I am on merchant signup page

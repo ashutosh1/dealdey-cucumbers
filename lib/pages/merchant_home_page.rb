@@ -30,8 +30,9 @@ class MerchantHomePage
     div.find_element(:name => "commit", :type => "submit", :value => "Submit").click
   end
 
-  def sign_in_merchant(valid_or_invalid_subscription)
-    data = data_for("merchant_details/#{valid_or_invalid_subscription}")
+  def sign_in_merchant(valid_or_invalid_subscription=nil)
+    merchant = valid_or_invalid_subscription.nil? ? "merchant_with_valid_subscription" : valid_or_invalid_subscription
+    data = data_for("merchant_details/#{merchant}")
     populate_page_with data
     sign_in
   end

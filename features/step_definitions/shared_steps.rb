@@ -17,3 +17,13 @@ end
 Then(/^I should see flash alert "([^\"]*)"$/) do |expected_text|
   expect(on(SharedPage).flash_alert).to eq(expected_text)
 end
+
+Then(/^I should see inline error "([^\"]*)"$/) do|msg|
+  expect(on(SharedPage).check_inline_errors?(msg)).to eq(true)
+end
+
+Then(/^I should see inline error on all "([^\"]*)"$/) do|all_attr|
+  Object.const_get(all_attr).each do |val|
+    expect(on(SharedPage).check_errors?(val)).to eq(true)
+  end
+end 

@@ -18,18 +18,8 @@ And(/^I submit the signup form$/) do
   on(MerchantSignupPage).submit_form
 end 
 
-Then(/^I should see inline error on all field$/) do
-  MerchantSignupPage::MERCHANT_ATTR.each do |val|
-    expect(on(MerchantSignupPage).check_errors?(val)).to eq(true)
-  end
-end 
-
 And(/^I fill "([^\"]*)" with "([^\"]*)"$/) do|merch_attr, value|
   on(MerchantSignupPage).populate_merchant({merch_attr.to_sym => value})
-end 
-
-Then(/^I should see inline error "([^\"]*)"$/) do|msg|
-  expect(on(MerchantSignupPage).check_inline_errors?(msg)).to eq(true)
 end 
 
 And(/^I fill merchant signup form$/) do
