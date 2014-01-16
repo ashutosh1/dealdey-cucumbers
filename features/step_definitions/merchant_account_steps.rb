@@ -7,6 +7,10 @@ Given(/^I am on update password section of merchant account$/) do
   on(MerchantAccountPage).password_tab
 end
 
+Given(/^I am on my subscription section of merchant account$/) do
+  on(MerchantAccountPage).my_subscription_tab
+end
+
 And(/^I update merchant password$/) do
   on(MerchantAccountPage).fill_and_save_password_field
 end
@@ -25,4 +29,12 @@ end
 
 And(/^I update merchant password with invalid current password$/) do
   on(MerchantAccountPage).fill_and_save_password_field({:current_password => "xyz"})
+end
+
+Then(/^I should see subscription section$/) do
+  expect(on(MerchantAccountPage).subscription_section?).to eq(true)
+end
+
+Then(/^I should see normal and premium offer for subscription$/) do
+  expect(on(MerchantAccountPage).multiple_subscription_offer?).to eq(true)
 end

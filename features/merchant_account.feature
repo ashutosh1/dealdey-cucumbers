@@ -40,4 +40,14 @@ Scenario: update merchant password with blank fields
   And I update merchant password with blank values
   Then I should see flash error "Please fix the below mentioned errors to continue."
   Then I should see inline error on all "MerchantAccountPage::MERCHANT_PASS_ATTR"
-  
+
+@my_subscription
+Scenario: my subscription on account page
+  Given I am on my subscription section of merchant account
+  Then I should see subscription section
+  Then I should see "Welcome to Dealdey"
+  Then I should see "Choose a subscription to start featuring your Promos on DealDey"
+
+Scenario: subscription on account page
+  Given I am on my subscription section of merchant account
+  Then I should see normal and premium offer for subscription

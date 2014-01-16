@@ -1,5 +1,4 @@
-# require File.expand_path(File.join(File.dirname(__FILE__), 'apps/dealdey_prep/current/config', 'environment'))
-require File.expand_path(File.join(File.dirname(__FILE__), 'dealday/config', 'environment'))
+require File.expand_path(File.join(File.dirname(__FILE__), 'apps/dealdey_prep/current/config', 'environment'))
 require 'yaml/store'
 yml_file =  YAML::Store.new "#{Dir.home}/default.yml"
 yml_file.transaction do 
