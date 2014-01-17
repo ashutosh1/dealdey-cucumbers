@@ -38,3 +38,28 @@ end
 Then(/^I should see normal and premium offer for subscription$/) do
   expect(on(MerchantAccountPage).multiple_subscription_offer?).to eq(true)
 end
+
+Then(/^I should see update_profile form$/) do
+  expect(on(MerchantAccountPage).edit_profile_form?).to eq(true)
+end
+
+And(/^I update profile on my account section$/) do
+  on(MerchantAccountPage).populate_merchant_profile
+end
+
+Then(/^I should see email field is disabled$/) do
+  expect(on(MerchantAccountPage).merchant_email_element.attribute("readonly")).to eq("true")
+end
+
+And(/^I update profile without "([^\"]*)" on my account section$/) do|pass_attr|
+  on(MerchantAccountPage).populate_merchant_profile({pass_attr.to_sym => ""})
+end
+
+And(/^I update profile with invalid website on my account section$/) do
+  on(MerchantAccountPage).populate_merchant_profile({:website => "test"})
+end
+
+And(/^I update profile without category on my account section$/) do
+  on(MerchantAccountPage).category_element[0].click
+  on(MerchantAccountPage).save_profile
+end

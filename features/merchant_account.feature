@@ -51,3 +51,45 @@ Scenario: my subscription on account page
 Scenario: subscription on account page
   Given I am on my subscription section of merchant account
   Then I should see normal and premium offer for subscription
+
+@profile_section
+Scenario: profile section on account page
+  Then I should see update_profile form
+
+Scenario: email should not be editable
+  Then I should see email field is disabled
+
+Scenario: update profile on account page
+  And I update profile on my account section
+  Then I should see flash notice "Your account details have been updated successfully."
+  
+Scenario: update profile without location on account page
+  And I update profile without "location" on my account section
+  Then I should see flash error "Please fix the below mentioned errors to continue."
+  Then I should see inline error "Location can't be blank"
+
+Scenario: update profile without phone on account page
+  And I update profile without "phone" on my account section
+  Then I should see flash error "Please fix the below mentioned errors to continue."
+  Then I should see inline error "Phone can't be blank"
+
+Scenario: update profile without contact_person on account page
+  And I update profile without "contact_person" on my account section
+  Then I should see flash error "Please fix the below mentioned errors to continue."
+  Then I should see inline error "Contact person can't be blank"
+
+Scenario: update profile without business_description on account page
+  And I update profile without "business_description" on my account section
+  Then I should see flash error "Please fix the below mentioned errors to continue."
+  Then I should see inline error "Business description can't be blank"
+
+Scenario: update profile with invalid website on account page
+  And I update profile with invalid website on my account section
+  Then I should see flash error "Please fix the below mentioned errors to continue."
+  Then I should see inline error "Website is invalid"
+
+Scenario: update profile without category on account page
+  And I update profile without category on my account section
+  Then I should see flash error "Please fix the below mentioned errors to continue."
+  Then I should see inline error "Category can't be blank"
+
