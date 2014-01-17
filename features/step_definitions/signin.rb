@@ -3,6 +3,7 @@ And /^I fill sign in email with "(.*?)"$/ do |email|
 end
 
 And /^I fill sign in password with "(.*?)"$/ do |password|
+  @browser.execute_script("arguments[0].focus;", on(SigninPage).password_element)
   on(SigninPage).password= password
 end
 

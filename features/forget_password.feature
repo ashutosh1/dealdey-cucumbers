@@ -2,6 +2,7 @@ Feature: Forget Password
   I need to make sure user can reset their password
   
 Background:
+  And I close the subscription popup
   Given I visit home page and see the sign in popup
   And I click forget password link
 

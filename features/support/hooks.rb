@@ -10,7 +10,8 @@ Before do | scenario |
   @browser = Selenium::WebDriver.for :firefox, :listener => obj_higlight
   @browser.get(data_for(:home)["url"])
   @browser.manage.window.maximize
-  @browser.manage.timeouts.implicit_wait = 300
+  @browser.manage.timeouts.implicit_wait = 10
+  @browser.manage.timeouts.script_timeout = 10
   
   # browser_type = ["*firefox", "*chrome"]
   #To run multiple browser parallel

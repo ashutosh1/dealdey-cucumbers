@@ -33,7 +33,9 @@ class MerchantHomePage
   def sign_in_merchant(valid_or_invalid_subscription=nil)
     merchant = valid_or_invalid_subscription.nil? ? "merchant_with_valid_subscription" : valid_or_invalid_subscription
     data = data_for("merchant_details/#{merchant}")
-    populate_page_with data
+    self.merchant_email = data["merchant_email"]
+    @browser.execute_script("arguments[0].focus;", merchant_password_element)
+    self.merchant_password = data["merchant_password"]
     sign_in
   end
 

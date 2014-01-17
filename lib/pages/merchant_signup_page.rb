@@ -65,7 +65,9 @@ class MerchantSignupPage
 
   def populate_merchant_signup_form(data = {})
     data = data_for("merchant_details/merchant_signin_credential").merge(data)
-    populate_page_with data
+    self.merchant_email = data["merchant_email"]
+    @browser.execute_script("arguments[0].focus;", merchant_password_element)
+    self.merchant_password = data["merchant_password"]
     sign_in
   end
 

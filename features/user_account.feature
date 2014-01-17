@@ -2,6 +2,7 @@ Feature: account settings
   As a user I can update my profile and addresses
 
 Background:
+  And I close the subscription popup
   Given I am signed in as user
   Given I am on account page
 

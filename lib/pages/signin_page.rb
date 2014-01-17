@@ -17,7 +17,9 @@ class SigninPage
 
   def signed_in_user(data={})
     self.sign_in_link
-    populate_page_with data_for("users/admin_first")
+    self.email = data_for("users/admin_first")["email"]
+    @browser.execute_script("arguments[0].focus;", password_element)
+    self.password = data_for("users/admin_first")["password"]
     self.sign_in
   end
 
