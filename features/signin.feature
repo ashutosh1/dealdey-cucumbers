@@ -1,5 +1,8 @@
 Feature: sign in
   As an admin i need to make sure only registered people could sign in
+
+Background:
+  And I close the subscription popup
   
 Scenario: sign in popup
   Given I visit home page

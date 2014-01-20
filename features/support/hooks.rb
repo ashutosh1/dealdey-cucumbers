@@ -7,7 +7,7 @@ Before do | scenario |
   DataMagic.load 'default.yml'
   obj_higlight = HighlightAbstractTest.new
   #to run cucumber parallel only below four line is required
-  @browser = Selenium::WebDriver.for :firefox, :listener => obj_higlight
+  @browser = Selenium::WebDriver.for :chrome, :listener => obj_higlight
   @browser.get(data_for(:home)["url"])
   @browser.manage.window.maximize
   @browser.manage.timeouts.implicit_wait = 10

@@ -1,5 +1,8 @@
 Feature: Signup Feature
   I need to make sure that user could sign up using valid data
+
+Background:
+  And I close the subscription popup
   
 Scenario: submits blank form
   Given I visit home page and see the sign up popup
@@ -10,25 +13,25 @@ Scenario: submit form with wrong format of email
   Given I visit home page and see the sign up popup
   And I fill wrong email
   And I click sign up link
-  Then I should see error in sign up "Email is invalid"
+  Then I should see inline error "Email is invalid"
 
 Scenario: submit form with wrong format of mobile
   Given I visit home page and see the sign up popup
   And I fill wrong mobile
   And I click sign up link
-  Then I should see error in sign up "Mobile is invalid"
+  Then I should see inline error "Mobile is invalid"
 
 Scenario: submit form with existing email
   Given I visit home page and see the sign up popup
   And I fill existing email
   And I click sign up link
-  Then I should see error in sign up "Email has already been taken"
+  Then I should see inline error "Email has already been taken"
 
 Scenario: password and password confirmation does not match
   Given I visit home page and see the sign up popup
   And I fill different password and password confirmation
   And I click sign up link
-  Then I should see error in sign up "Password doesn't match confirmation"
+  Then I should see inline error "Password doesn't match confirmation"
 
 @not
 Scenario: submit form with valid data

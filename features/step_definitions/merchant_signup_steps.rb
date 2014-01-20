@@ -31,7 +31,7 @@ And(/^I check offer promo checkbox$/) do
 end 
 
 And(/^I upload a logo$/) do
-  on(MerchantSignupPage).logo_file = File.join(File.dirname(__FILE__), '..', '..', 'config/data/images', 'flipkart.jpg')
+  on(MerchantSignupPage).logo_file = File.expand_path("./config/data/images/flipkart.jpg")
 end 
 
 And(/^I click sign in as merchant link$/) do
@@ -64,4 +64,8 @@ end
 
 And(/^I fill merchant email for resend instruction with "(.*?)"$/) do |email|
   on(MerchantSignupPage).user_email_for_resend = email
+end
+
+And(/^merchant signup form is blank$/) do
+  on(MerchantSignupPage).email = ""
 end

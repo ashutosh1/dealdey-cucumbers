@@ -13,7 +13,6 @@ Scenario: add product to cart
 Scenario: on cart detail page
   Given I am on cart detail page for non shippable item
   Then I should see 'Continue shopping' link
-  And I click 'Proceed to Payment' link
   And I am logged in as user
   And I wait for 5 seconds
   And I proceed
@@ -21,7 +20,6 @@ Scenario: on cart detail page
 
 Scenario: on checkout page
   Given I am on cart detail page for non shippable item
-  And I click 'Proceed to Payment' link
   And I am logged in as user
   And I wait for 5 seconds
   And I proceed
@@ -44,7 +42,6 @@ Scenario: add shippable product to cart
 
 Scenario: on checkout of shippable item
   Given I am on cart detail page for shippable item
-  And I click 'Proceed to Payment' link
   And I am logged in as user
   And I wait for 5 seconds
   Then I should see addresses to select
@@ -68,7 +65,6 @@ Scenario: add shippable pod deals to cart
 Scenario: on checkout of shippable pod
   Given I am on deatil page of shippable pod deal
   And I click 'buy' button
-  And I click 'Proceed to Payment' link
   And I am logged in as user
   And I wait for 5 seconds
   Then I should see addresses to select

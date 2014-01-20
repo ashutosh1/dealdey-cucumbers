@@ -28,6 +28,7 @@ Scenario: sign in with correct credentials
 
 Scenario: submit blank form
   Given I am on merchant signup page
+  And merchant signup form is blank
   And I submit the signup form
   Then I should see flash error "Please fix the below mentioned errors to continue."
   Then I should see inline error on all "MerchantSignupPage::MERCHANT_ATTR"

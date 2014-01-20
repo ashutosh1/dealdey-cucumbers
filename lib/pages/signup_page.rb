@@ -4,8 +4,8 @@ class SignupPage
   DEFAULT_USER = {
     "firstname" => "Dealdey",
     "lastname" => "cucumber",
-    "email" => "cucks11@example.com",
-    "mobile" => "08119786160",
+    "email" => "cucks14@example.com",
+    "mobile" => "08119786170",
     "gender" => "Male",
     "age_bracket" => "18-25",
     "password" => "deal123",

@@ -33,7 +33,3 @@ end
 Given(/^I fill all the field$/) do
   on(SignupPage).populate_user  
 end
-
-Then(/^I should see error in sign up "(.*?)"$/) do |expected_text|
-  expect(@current_page.error_message == expected_text).to eq(true)
-end
