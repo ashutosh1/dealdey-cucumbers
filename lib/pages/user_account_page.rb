@@ -21,6 +21,14 @@ class UserAccountPage
   text_field(:address_line, :id => "shipping_address_address_line")
   select_list(:state, :id => "shipping_address_state")
   select_list(:area, :id => "area_list")
+  #for edit a existing address
+  text_field(:address_name) do|page|
+    page.div_element(:class => "address_form").when_visible.text_field_element(:id => "shipping_address_name")
+  end
+
+  button(:save_updated_address) do|page|
+    page.div_element(:class => "address_form").when_visible.button_element(:class => "savebut")
+  end
 
   #profile tab
   text_field(:firstname, :id => "user_firstname")
@@ -73,8 +81,8 @@ class UserAccountPage
   end
 
   def update_address
-    self.shipping_address_name = data_for("address/update_shipping_address")["shipping_address_name"]
-    save_address
+    self.address_name = data_for("address/update_shipping_address")["shipping_address_name"]
+    save_updated_address_element.click
   end
 
   def wrong_pass_update

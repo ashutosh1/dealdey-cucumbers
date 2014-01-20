@@ -65,8 +65,7 @@ class MerchantHomePage
 
   def fill_promo_description
     @browser.switch_to.frame "discount_coupon_description_ifr"
-    body = @browser.find_element(:id => "tinymce")
-    body.send_keys "You can get two deals with one......"
+    execute_script("document.getElementById('tinymce').innerHTML = '<p>You can get two deals with one......</p>';")
     @browser.switch_to.default_content
   end
 
