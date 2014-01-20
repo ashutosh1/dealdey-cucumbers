@@ -100,6 +100,10 @@ class Checkout
     self.select_address_element.click
   end
 
+  def password=(value)
+    execute_script("document.getElementById('sign_in_password').value = '#{value}';")
+  end
+
   def login_user
     self.proceed_to_payment
     populate_page_with data_for("users/admin_first")

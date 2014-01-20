@@ -25,6 +25,10 @@ class MerchantHomePage
   end
   span(:cancel_subscription, :class => "cancel-image")
 
+  def merchant_password=(value)
+    execute_script("document.getElementById('merchant_password').value = '#{value}';")
+  end
+
   def save_promo
     div = @browser.find_element(:class => "submit-form")
     div.find_element(:name => "commit", :type => "submit", :value => "Submit").click
@@ -33,9 +37,7 @@ class MerchantHomePage
   def sign_in_merchant(valid_or_invalid_subscription=nil)
     merchant = valid_or_invalid_subscription.nil? ? "merchant_with_valid_subscription" : valid_or_invalid_subscription
     data = data_for("merchant_details/#{merchant}")
-    self.merchant_email = data["merchant_email"]
-    @browser.execute_script("arguments[0].focus;", merchant_password_element)
-    self.merchant_password = data["merchant_password"]
+    populate_page_with data
     sign_in
   end
 

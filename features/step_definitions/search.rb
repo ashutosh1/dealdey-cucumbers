@@ -3,10 +3,12 @@ Then(/^I should see search form$/) do
 end
 
 And(/^I enter "([^\"]*)" in search field$/) do |text|
-  on(Search).search_field
+  on(Search).search_field_element.focus
   on(Search).search_field = text
-  @current_page.wait_until do
-    @current_page.search_title? && @current_page.search_result_link?
+  if text != "xyxyxyxyxyxyxyx"
+    @current_page.wait_until do
+      @current_page.search_title? && @current_page.search_result_link?
+    end
   end
 end
 

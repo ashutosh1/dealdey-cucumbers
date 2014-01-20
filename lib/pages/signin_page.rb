@@ -9,6 +9,10 @@ class SigninPage
 
   div(:sign_in_popup, :id => "signin_popup_form")
   divs(:error_message, :class => "alert")
+
+  def password=(value)
+    execute_script("document.getElementById('sign_in_password').value = '#{value}';")
+  end
  
   def sign_in
   	span = @browser.find_element(:class => 'signin-box-splash')
@@ -17,9 +21,7 @@ class SigninPage
 
   def signed_in_user(data={})
     self.sign_in_link
-    self.email = data_for("users/admin_first")["email"]
-    @browser.execute_script("arguments[0].focus;", password_element)
-    self.password = data_for("users/admin_first")["password"]
+    populate_page_with data_for("users/admin_first").merge(data)
     self.sign_in
   end
 

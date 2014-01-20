@@ -1,12 +1,13 @@
 Feature: Checkout Page
   should be able to checkout with non shippable product and wallet payment
-  
+
+Background:
+  And I close the subscription popup
+
 @non_shippable
 Scenario: add product to cart
   Given I am on deatil page of deal 'limited-time-offer'
   And I click 'buy' button
-  Then I should see 'Add To Cart' popup
-  And I click 'Add To Cart' button
   Then I should see flash notice "Limited - Time offer was successfully added to your cart"
 
 Scenario: on cart detail page
@@ -57,19 +58,16 @@ Scenario: on checkout of shippable item
 @shippable_pod
 Scenario: shippable pod deals
   Given I am on deatil page of shippable pod deal
-  And I close the subscription popup
   Then I should see pay on delivery section
     
 Scenario: add shippable pod deals to cart
   Given I am on deatil page of shippable pod deal
   And I click 'buy' button
-  And I add it to cart
   Then I should see flash notice "Beaudy Professional Hair Straightene was successfully added to your cart"
 
 Scenario: on checkout of shippable pod
   Given I am on deatil page of shippable pod deal
   And I click 'buy' button
-  And I add it to cart
   And I click 'Proceed to Payment' link
   And I am logged in as user
   And I wait for 5 seconds
@@ -95,13 +93,11 @@ Scenario: non shippable pod deals
 Scenario: add non shippable pod deals to cart
   Given I am on deatil page of non shippable pod deal
   And I click 'Buy' link
-  And I add it to cart
   Then I should see flash notice "PoD Service Deal 1 was successfully added to your cart"
 
 Scenario: on checkout of non shippable pod
   Given I am on deatil page of non shippable pod deal
   And I click 'Buy' link
-  And I add it to cart
   And I am logged in as user
   And I wait for 5 seconds
   And I proceed
@@ -146,7 +142,6 @@ Scenario: checkout for non shippable pod without selecting address
 @rencredit_deals  
 Scenario: rencredit deals
   Given I visit page "rencreditmax_deal"
-  And I close the subscription popup
   Then I should see "Available for installmental payments"
 
 Scenario: add rencredit deals to cart

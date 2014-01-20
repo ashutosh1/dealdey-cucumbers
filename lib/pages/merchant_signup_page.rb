@@ -43,6 +43,10 @@ class MerchantSignupPage
   text_field(:deal_price, :id => "merchant_deal_price")
   text_field(:deal_discount, :id => "merchant_deal_discount")
   
+  def merchant_password=(value)
+    execute_script("document.getElementById('merchant_password').value = '#{value}';")
+  end
+
   def submit_form
     @browser.find_element(:xpath => "/html/body/div[2]/div[6]/div[2]/div[2]/div/div[2]/div[2]/form/div[13]/span/input").click
   end
@@ -64,10 +68,7 @@ class MerchantSignupPage
   end
 
   def populate_merchant_signup_form(data = {})
-    data = data_for("merchant_details/merchant_signin_credential").merge(data)
-    self.merchant_email = data["merchant_email"]
-    @browser.execute_script("arguments[0].focus;", merchant_password_element)
-    self.merchant_password = data["merchant_password"]
+    populate_page_with data_for("merchant_details/merchant_signin_credential").merge(data)
     sign_in
   end
 

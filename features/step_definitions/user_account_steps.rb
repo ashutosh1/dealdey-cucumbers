@@ -21,6 +21,7 @@ end
 
 And(/^I update gender$/) do
   on(UserAccountPage).gender_element[1].click
+  on(UserAccountPage).save_profile
 end
 
 Then(/^I should see updated gender$/) do

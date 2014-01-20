@@ -21,7 +21,6 @@ end
 And(/^I am on cart detail page for non shippable item$/) do
   on(Checkout).visit_non_shippable_page
   on(Checkout).buy_product
-  on(Checkout).add_to_cart
 end
 
 Then(/^I should be on 'checkout' page$/) do
@@ -81,13 +80,11 @@ end
 Given(/^I am on checkout page of shippable pod deal$/) do
   on(Checkout).visit_shippable_pod
   on(Checkout).buy_now_link
-  on(Checkout).add_to_cart_link
 end
 
 Given(/^I am on checkout page of non shippable pod deal$/) do
   on(Checkout).visit_non_shippable_pod
   on(Checkout).buy_now_link
-  on(Checkout).add_to_cart_link
 end
 
 Then(/^I should see pay on delivery section$/) do

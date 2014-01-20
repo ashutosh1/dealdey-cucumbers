@@ -13,7 +13,7 @@ Scenario: update profile
   And I update my profile
   Then I should see flash notice "Your Account Details have been updated"
 
-Scenario: update profile
+Scenario: update name
   And I update name
   Then I should see flash notice "Your Account Details have been updated"
   Then I should see updated name
