@@ -29,6 +29,7 @@ Then(/^I should see updated gender$/) do
 end
 
 And(/^I click select none$/) do
+  on(UserAccountPage).select_none_element.focus
   on(UserAccountPage).select_none
 end
 
@@ -37,6 +38,7 @@ Then(/^All select box should be unchecked$/) do
 end
 
 And(/^I update news letter settings$/) do
+  on(UserAccountPage).news_letter_checkbox_element.focus
   on(UserAccountPage).check_news_letter_checkbox
   on(UserAccountPage).save_news_letter
 end

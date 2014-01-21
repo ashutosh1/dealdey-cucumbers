@@ -169,13 +169,13 @@ Scenario: Complete order for rencredit deals
   Then Order should be successful
   Then I should see 'Thanks for shopping on DealDey!'
 
-Scenario: Order sum is greter than 500000 rencredit deals to cart
+Scenario: Order sum is greter than max amount for rencredit deals
   Given I am on checkout page of rencredit max deal with sum greater than max limit
   And I select 'Pay in Installments' option
   And I click continue
   Then I should see "Your order cost exceeds the maximum limit allowed for a Rencredit order which is N 500000. Please remove some items from your cart to proceed with the order."
 
-Scenario: Order sum is less than 30000 for rencredit deals 
+Scenario: Order sum is less than minimum amount for rencredit deals 
   Given I am on checkout page of rencredit deal
   Then I should not see 'Pay in Installments' option
 

@@ -1,4 +1,5 @@
 And(/^I click 'Proceed to Payment' link$/) do
+  @current_page.proceed_to_payment_element.focus
   @current_page.proceed_to_payment
 end
 

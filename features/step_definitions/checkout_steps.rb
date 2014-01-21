@@ -88,7 +88,7 @@ Given(/^I am on checkout page of non shippable pod deal$/) do
 end
 
 Then(/^I should see pay on delivery section$/) do
-  expect(on(Checkout).view_areas && @current_page.state_select_div?).to eq(true)
+  expect(on(Checkout).view_areas? && @current_page.state_select_div?).to eq(true)
 end
 
 And(/^I selcet Pay on Delivery and click complete button$/) do
@@ -136,6 +136,7 @@ end
 Given(/^I am on checkout page of rencredit max deal$/) do
   navigate_to(Checkout).login_user
   @current_page.select_first_address
+  @current_page.proceed_to_payment_element.focus
   @current_page.proceed_to_payment
 end
 
@@ -158,12 +159,14 @@ end
 Given(/^I am on checkout page of rencredit max deal with sum greater than max limit$/) do
   navigate_to(Checkout, :using => :rencreditmax_deal_greater_than_max_limit).login_user
   @current_page.select_first_address
+  @current_page.proceed_to_payment_element.focus
   @current_page.proceed_to_payment
 end
 
 Given(/^I am on checkout page of rencredit deal$/) do
   navigate_to(Checkout, :using => :rencredit_deal).login_user
   @current_page.select_first_address
+  @current_page.proceed_to_payment_element.focus
   @current_page.proceed_to_payment
 end
 

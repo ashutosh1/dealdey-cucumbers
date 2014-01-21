@@ -51,12 +51,18 @@ class UserAccountPage
 
   def save_news_letter
     span = @browser.find_element(:class => "button_group")
-    span.find_element(:name => "commit", :type => "submit", :value => "save").click
+    elem = span.find_element(:name => "commit", :type => "submit", :value => "save")
+    #For chrome scroll element into view and then click if page bigger than screen
+    elem.location_once_scrolled_into_view
+    elem.click
   end
 
   def save_profile
     li = @browser.find_element(:class => "button")
-    li.find_element(:name => "commit", :type => "submit", :value => "save", :class => "savebut").click
+    elem = li.find_element(:name => "commit", :type => "submit", :value => "save", :class => "savebut")
+    #For chrome scroll element into view and then click if page bigger than screen
+    elem.location_once_scrolled_into_view
+    elem.click
   end
 
   def update_name
