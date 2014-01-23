@@ -19,7 +19,7 @@ Then(/^I should see subscribe now button for subscription popup$/) do
 end
 
 And(/^I close the subscription popup$/) do
-  on(SubscriptionPopup).close_subscription
+  rescue_background_exception{on(SubscriptionPopup).close_subscription}
 end
 
 Then(/^I should see unordered sign in and sign up header links$/) do

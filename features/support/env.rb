@@ -11,6 +11,7 @@ require_all './lib/shared/*.rb'
 require_all './lib/pages/*.rb'
 
 World(PageObject::PageFactory)
+World(RescueBackgroundException)
     
 PageObject::PageFactory.routes = {
   :default => [[DealDetailPage,:visit_rencreditmax_deal], [DealDetailPage,:add_to_cart_link], [Checkout, :login_user]],

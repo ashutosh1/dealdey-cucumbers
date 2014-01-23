@@ -1,6 +1,11 @@
 Given(/^I am on merchant account page$/) do
-  navigate_to(MerchantHomePage, :using => :merchant_account_page).sign_in_merchant
-  on(MerchantHomePage).my_account
+  rescue_background_exception do 
+    navigate_to(MerchantHomePage, :using => :merchant_account_page).sign_in_merchant
+    @current_page.wait_until do 
+      on(MerchantHomePage).my_account?  
+    end
+    on(MerchantHomePage).my_account
+  end
 end
 
 Given(/^I am on update password section of merchant account$/) do

@@ -1,5 +1,5 @@
 And(/^I click forget password link$/) do
-  on(SigninPage).forget_password_link
+  rescue_background_exception{on(SigninPage).forget_password_link}
 end
 
 Then(/^I should see forget password page$/) do

@@ -1,6 +1,8 @@
 Given(/^I am on account page$/) do
-  on(UserAccountPage).account
-  on(UserAccountPage).settings
+  rescue_background_exception do 
+    on(UserAccountPage).account
+    on(UserAccountPage).settings
+  end
 end
 
 Then(/^I see profile details$/) do

@@ -1,5 +1,5 @@
 Given(/^I am on merchant welcome page$/) do
-  on(MerchantSignupPage).register_as_merchant
+  rescue_background_exception{on(MerchantSignupPage).register_as_merchant}
 end
 
 Then(/^I see signin and signup links$/) do
@@ -35,7 +35,7 @@ And(/^I upload a logo$/) do
 end 
 
 And(/^I click sign in as merchant link$/) do
-  on(MerchantSignupPage).sign_in_link
+  rescue_background_exception{on(MerchantSignupPage).sign_in_link}
 end
 
 Then(/^I see merchant sign in form popup$/) do

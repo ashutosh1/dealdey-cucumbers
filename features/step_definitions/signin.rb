@@ -20,11 +20,11 @@ Then(/^I should see sign in popup$/) do
 end
 
 Given(/^I visit home page and see the sign in popup$/) do
-  on(SigninPage).sign_in_link
+  rescue_background_exception{on(SigninPage).sign_in_link}
 end
 
 Given(/^I am signed in as user$/) do
-  on(SigninPage).signed_in_user
+  rescue_background_exception{on(SigninPage).signed_in_user}
 end
 
 Then(/^I should see error message "([^\"]*)"$/) do |expected_text|
