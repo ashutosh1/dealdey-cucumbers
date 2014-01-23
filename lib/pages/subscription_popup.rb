@@ -5,8 +5,13 @@ class SubscriptionPopup
 
   text_field(:subscription_email, :id => 'email_subscription_email')
 
-  span(:pod_text, :class => 'pod')
-  span(:call, :class => 'call')
+  span(:pod_text) do|page|
+    page.div_element(:id => 'new_city_select').span_element(:class => 'pod')
+  end
+
+  span(:call) do|page|
+    page.div_element(:id => 'new_city_select').span_element(:class => 'call')
+  end
   
   select_list(:select_state, :id => 'email_subscription_state_id')
   unordered_list(:header_link, :class => 'header-links')

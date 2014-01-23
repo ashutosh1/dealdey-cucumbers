@@ -5,12 +5,12 @@ Then(/^I should see subscription popup$/) do
   expect(on(SubscriptionPopup).subscription_popup?).to eq(true)
 end
 
-Then(/^I should see pod text$/) do
-  expect(on(SubscriptionPopup).pod_text?).to eq(true)
+Then(/^I should not see pod text$/) do
+  expect(on(SubscriptionPopup).pod_text?).to eq(false)
 end
 
-Then(/^I should see span having number to call$/) do
-  expect(on(SubscriptionPopup).call?).to eq(true)
+Then(/^I should see not span having number to call$/) do
+  expect(on(SubscriptionPopup).call?).to eq(false)
 end
 
 Then(/^I should see subscribe now button for subscription popup$/) do
@@ -22,15 +22,11 @@ And(/^I close the subscription popup$/) do
   rescue_background_exception{on(SubscriptionPopup).close_subscription}
 end
 
-Then(/^I should see unordered sign in and sign up header links$/) do
-  expect(on(SubscriptionPopup).header_link?).to eq(true)
-end
-
-Then(/^I should see sign in list and link$/) do
+Then(/^I should see sign in link$/) do
   expect(on(SubscriptionPopup).sign_in?).to eq(true)
 end
 
-Then(/^I should see sign up list and link$/) do
+Then(/^I should see sign up link$/) do
   expect(on(SubscriptionPopup).sign_up?).to eq(true)
 end
 

@@ -10,20 +10,17 @@ Scenario: forget password page
   Then I should see forget password page
 
 Scenario: submit with blank email
-  And I click Send me reset password instructions
+  And I submit resend instruction with " "
   Then I should see error "Email can't be blank"
 
 Scenario: submit with wrong format email
-  And I fill email for resend instruction with "test"
-  And I click Send me reset password instructions
+  And I submit resend instruction with "test"
   Then I should see error "Email not found"
 
 Scenario: submit with non existing email
-  And I fill email for resend instruction with "test@example.com"
-  And I click Send me reset password instructions
+  And I submit resend instruction with "test@example.com"
   Then I should see error "Email not found"
 
 Scenario: submit with correct email
-  And I fill email for resend instruction with "user@mailinator.com"
-  And I click Send me reset password instructions
+  And I submit resend instruction with "user@mailinator.com"
   Then I should see flash notice "You will receive an email with an option to change password."
