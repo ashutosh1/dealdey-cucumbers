@@ -7,9 +7,10 @@ admin_second:
   password: 123456
 
 user_update_data: 
-  firstname: vijaytest
-  lastname: test  
-
+  firstname: ~first_name
+  lastname: ~last_name
+  mobile: ~randomize ['08919191919', '07919191919']
+  
 user_revert_data:
   firstname: vijay 
   lastname: test
@@ -22,3 +23,13 @@ merchant_first:
 
 merchant_with_invalid_subscription:
   email: "merchant2@mailinator.com"  
+
+change_user_password: 
+  current_password: 123456
+  new_password: 1234567
+  confirm_password: 1234567
+
+reset_user_password:
+  current_password: 1234567
+  new_password: 123456
+  confirm_password: 123456

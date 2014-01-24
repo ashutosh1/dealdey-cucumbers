@@ -1,6 +1,7 @@
 class UserAccountPage
   include PageObject
-  
+  SHIPPING_ADDRESS_ATTRIBUTES = ["Name", "Address line", "State", "Area"]
+
   list_item(:user_account, :class => 'user')
   link(:account, :class => 'dropdown')
   link(:settings, :class => 'settings')
@@ -46,6 +47,7 @@ class UserAccountPage
   def update_profile
     populate_page_with data_for("users/user_update_data")
     self.gender_element[2].click
+    self.age_element[2].click
     save_profile
   end
 
@@ -58,9 +60,9 @@ class UserAccountPage
     li = @browser.find_element(:class => "button")
     li.find_element(:name => "commit", :type => "submit", :value => "save", :class => "savebut").click
   end
-
-  def update_name
-    populate_page_with data_for("users/user_revert_data")
+  
+  def populate_user_profile(data = {}, pass_attr)
+    populate_page_with data_for("users/user_update_data").merge(data)
     save_profile
   end
 
@@ -85,27 +87,18 @@ class UserAccountPage
     save_updated_address_element.click
   end
 
-  def wrong_pass_update
-    fill_and_save_password_field("12345678", "123456", "123456")
-  end
-
-  def update_password
-    fill_and_save_password_field("123456", "1234567", "1234567")
-  end
-
   def reset_update_password
-    fill_and_save_password_field("1234567", "123456", "123456")
-  end
-
-  def fill_and_save_password_field(cur_pass, new_pass, conf_pass)
-    self.current_password, self.new_password, self.confirm_password = cur_pass, new_pass, conf_pass
+    populate_page_with data_for("users/reset_user_password")
     save_password
   end
 
+  def fill_and_save_password_field(data = {})
+    populate_page_with data_for("users/change_user_password").merge(data)
+    save_password
+  end
+  
   def save_password
     @browser.find_element(:xpath => "/html/body/div[2]/div[4]/div[2]/div[2]/div[3]/form/ul/li[4]/input").click
   end
-
-
+  
 end
-

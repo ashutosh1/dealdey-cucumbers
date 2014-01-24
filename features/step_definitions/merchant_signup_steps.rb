@@ -38,7 +38,7 @@ And(/^I click sign in as merchant link$/) do
   rescue_background_exception{on(MerchantSignupPage).sign_in_link}
 end
 
-Then(/^I see merchant sign in form popup$/) do
+Then(/^I see merchant sign_in form in popup$/) do
   expect(on(MerchantSignupPage).merchant_signin_form?).to eq(true)
 end 
 
@@ -47,11 +47,19 @@ And(/^I click sign in as merchant button$/) do
 end
 
 And(/^I submit merchant sign in form with wrong credentials$/) do
-  on(MerchantSignupPage).populate_merchant_signup_form({:merchant_email => "test@deal.com"})
+  on(MerchantSignupPage).populate_merchant_signin_form({:merchant_email => "test@deal.com"})
 end
 
 And(/^I submit merchant sign in form$/) do
-  on(MerchantSignupPage).populate_merchant_signup_form
+  on(MerchantSignupPage).populate_merchant_signin_form
+end
+
+And(/^I submit merchant sign in form with wrong password$/) do
+  on(MerchantSignupPage).populate_merchant_signin_form({:merchant_password => "909090"})
+end
+
+And(/^I submit merchant sign in form without password$/) do
+  on(MerchantSignupPage).populate_merchant_signin_form({:merchant_password => ""})
 end
 
 Then(/^I should be on merchant home page$/) do

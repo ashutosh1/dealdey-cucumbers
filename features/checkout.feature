@@ -1,5 +1,5 @@
 Feature: Checkout Page
-  should be able to checkout with non shippable product and wallet payment
+  As user i should be able to checkout with different deals
 
 Background:
   And I close the subscription popup

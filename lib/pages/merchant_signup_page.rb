@@ -67,7 +67,7 @@ class MerchantSignupPage
     span.find_element(:name => "commit", :value => "Sign in", :type => "submit").click
   end
 
-  def populate_merchant_signup_form(data = {})
+  def populate_merchant_signin_form(data = {})
     populate_page_with data_for("merchant_details/merchant_signin_credential").merge(data)
     sign_in
   end

@@ -8,35 +8,33 @@ Background:
 Scenario: search form
   Then I should see search form
 
-Scenario: search for deals should autosuggest
+Scenario: User view autosugestion on search
   And I enter "limit" in search field
   Then I should see search suggestions
 
 Scenario: clicking on autosuggest result should take to deatil page
   And I enter "limit" in search field
-  And I click auto suggest serach result
+  And I click autosuggest serach result
   Then I should be on deal details page
 
 Scenario: search deals with title
-  And I enter "limit" in search field
-  And I click search button
-  Then I should see search results containing "limit" word
+  And I search with "limit"
+  Then I should see search results
+  Then I should see search text "limit"
 
 Scenario: search deals with wrong title
-  And I enter "xyxyxyxyxyxyxyx" in search field
-  And I click search button
-  Then I should see suggestion to modify search
+  And I search with "xyxyxyxyxyxyxyx"
+  Then I should see "0 item(s) found for xyxyxyxyxyxyxyx"
+  Then I should see "Make sure all the words are spelled correctly."
+  Then I should see "Try searching for a less specific item."
+  Then I should see "You may also want to look at our Top selling categories:"
+  Then I should see all categories section
 
-Scenario: search deals with keyword should autosuggest
+Scenario: User view autosugestion on search by deal's keyword
   And I enter "test" in search field
   Then I should see search suggestions
 
-Scenario: clicking on autosuggest result for keyword should take to deatil page
-  And I enter "test" in search field
-  And I click auto suggest serach result
-  Then I should be on deal details page
-
 Scenario: search deals by keyword
-  And I enter "test" in search field
-  And I click search button
-  Then I should see search results containing "test" word
+  And I search with "test"
+  Then I should see search results
+  Then I should see search text "test"

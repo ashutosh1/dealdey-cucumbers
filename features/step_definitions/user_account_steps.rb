@@ -13,23 +13,6 @@ And(/^I update my profile$/) do
   on(UserAccountPage).update_profile
 end
 
-And(/^I update name$/) do
-  on(UserAccountPage).update_name
-end
-
-Then(/^I should see updated name$/) do
-  expect(on(UserAccountPage).firstname).to eq("vijay")
-end
-
-And(/^I update gender$/) do
-  on(UserAccountPage).gender_element[1].click
-  on(UserAccountPage).save_profile
-end
-
-Then(/^I should see updated gender$/) do
-  expect(on(UserAccountPage).gender).to eq("Male")
-end
-
 And(/^I click select none$/) do
   on(UserAccountPage).select_none
 end
@@ -70,14 +53,44 @@ Given(/^I am on update update password page$/) do
   on(UserAccountPage).password_tab
 end
 
-And(/^I update password with wrong current password$/) do
-  on(UserAccountPage).wrong_pass_update
+And(/^I update password with invalid current password$/) do
+  on(UserAccountPage).fill_and_save_password_field({:current_password => "xyz"})
 end
 
 And(/^I update password$/) do
-  on(UserAccountPage).update_password
+  on(UserAccountPage).fill_and_save_password_field
 end
 
 And(/^I reset the password$/) do
   on(UserAccountPage).reset_update_password
+end
+
+And(/^I update profile without "([^\"]*)"$/) do|pass_attr|
+  on(UserAccountPage).populate_user_profile({pass_attr.to_sym => ""}, pass_attr)
+end
+
+And(/^I update profile with invalid mobile$/) do
+  on(UserAccountPage).populate_user_profile({:mobile => "0567787878"}, "mobile")
+end
+
+And(/^I update profile without age bracket$/) do
+  on(UserAccountPage).age_element[0].click
+  on(UserAccountPage).save_profile
+end
+
+And(/^I update profile without gender$/) do
+  on(UserAccountPage).gender_element[0].click
+  on(UserAccountPage).save_profile
+end
+
+And(/^I submit blank shipping address form$/) do
+  on(UserAccountPage).save_address
+end
+
+And(/^I update password without "([^\"]*)"$/) do|pass_attr|
+  on(UserAccountPage).fill_and_save_password_field({pass_attr.to_sym => ""})
+end
+
+And(/^I update password with blank values$/) do
+  on(UserAccountPage).save_password
 end

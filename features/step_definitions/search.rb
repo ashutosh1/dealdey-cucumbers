@@ -16,7 +16,7 @@ Then(/^I should see search suggestions$/) do
   expect(@current_page.search_title? && @current_page.search_title == "Deals" && @current_page.search_result_link?).to eq(true)
 end
 
-And(/^I click auto suggest serach result$/) do
+And(/^I click autosuggest serach result$/) do
   @current_page.search_result_link 
 end
 
@@ -28,12 +28,24 @@ And(/^I click search button$/) do
   on(Search).search
 end
 
-Then(/^I should see search results containing "(.*?)" word$/) do |arg1|
+Then(/^I should see search text "(.*?)"$/) do |arg1|
   expect(@current_page.search_text? && @current_page.search_text.include?(arg1)).to eq(true)
 end
 
-Then(/^I should see suggestion to modify search$/) do
-  expect(@current_page.suggestion_for_search? && @current_page.no_results?).to eq(true)
+Then(/^I should see search results$/) do
+  expect(@current_page.search_results_elements.count).to be >= 1
+end
+
+Then(/^I should see all categories section$/) do
+  Search::CATEGORY.each do|txt|
+    expect(@current_page.all_categories?(txt)).to eq(true)
+  end
+end
+
+And(/^I search with "(.*?)"$/) do |text|
+  on(Search).search_field_element.focus
+  on(Search).search_field = text
+  on(Search).search
 end
 
 

@@ -1,9 +1,9 @@
-Feature: account settings
+Feature: merchant account/address settings
   As a merchant I can update my profile, password and addresses
 
 Background:
   And I close the subscription popup
-  Given I am on merchant account page
+  Given I go to merchant account page
 
 Scenario: update merchant password
   Given I am on update password section of merchant account
@@ -29,7 +29,7 @@ Scenario: update merchant password without confirm password
   Then I should see flash error "Please fix the below mentioned errors to continue."
   Then I should see inline error "Password doesn't match confirmation"
 
-Scenario: update merchant password without confirm password
+Scenario: update merchant password with invalid current password
   Given I am on update password section of merchant account
   And I update merchant password with invalid current password
   Then I should see flash error "Please fix the below mentioned errors to continue."
@@ -63,33 +63,12 @@ Scenario: update profile on account page
   And I update profile on my account section
   Then I should see flash notice "Your account details have been updated successfully."
   
-Scenario: update profile without location on account page
-  And I update profile without "location" on my account section
+Scenario: update profile with blank form
+  And I update profile with blank values
   Then I should see flash error "Please fix the below mentioned errors to continue."
-  Then I should see inline error "Location can't be blank"
-
-Scenario: update profile without phone on account page
-  And I update profile without "phone" on my account section
-  Then I should see flash error "Please fix the below mentioned errors to continue."
-  Then I should see inline error "Phone can't be blank"
-
-Scenario: update profile without contact_person on account page
-  And I update profile without "contact_person" on my account section
-  Then I should see flash error "Please fix the below mentioned errors to continue."
-  Then I should see inline error "Contact person can't be blank"
-
-Scenario: update profile without business_description on account page
-  And I update profile without "business_description" on my account section
-  Then I should see flash error "Please fix the below mentioned errors to continue."
-  Then I should see inline error "Business description can't be blank"
+  Then I should see inline error on all "MerchantAccountPage::MERCHANT_PROFILE_ATTR"
 
 Scenario: update profile with invalid website on account page
   And I update profile with invalid website on my account section
   Then I should see flash error "Please fix the below mentioned errors to continue."
   Then I should see inline error "Website is invalid"
-
-Scenario: update profile without category on account page
-  And I update profile without category on my account section
-  Then I should see flash error "Please fix the below mentioned errors to continue."
-  Then I should see inline error "Category can't be blank"
-

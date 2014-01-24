@@ -2,6 +2,7 @@ class MerchantAccountPage
   include PageObject
 
   MERCHANT_PASS_ATTR = ["Current password", "Password"]
+  MERCHANT_PROFILE_ATTR = ["Business name", "Location", "Phone", "Contact person", "Business description"]
 
   link(:password_tab, :text => 'Password')
   link(:my_subscription_tab, :text => 'My Subscription')

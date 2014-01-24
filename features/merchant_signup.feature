@@ -1,100 +1,69 @@
-Feature: account settings
-  As a merchant i can sign in or as user can sign up as merchant
+Feature: merchant sign in and sign up
+  As a merchant i can sign in and as visitor i should sign up for merchant
 
 Background:
   And I close the subscription popup
   Given I am on merchant welcome page
 
-Scenario: I should see links
+Scenario: User see sign_in and sign_up links
   Then I see signin and signup links
 
-Scenario: I should see sign in popup
+Scenario: User see sign_in form in popup
   And I click sign in as merchant link
-  Then I see merchant sign in form popup
+  Then I see merchant sign_in form in popup
 
-Scenario: I am on signup page
-  Given I am on merchant signup page
-  Then I should see merchant signup form
-
-Scenario: sign in with wrong data
+Scenario: sign in with invalid credentials
   And I click sign in as merchant link
   And I submit merchant sign in form with wrong credentials
   Then I should see error message "Invalid Email or Password."
   
-Scenario: sign in with correct credentials
+Scenario: sign in with valid credentials
   And I click sign in as merchant link
   And I submit merchant sign in form
   Then I should be on merchant home page
 
-Scenario: submit blank form
+Scenario: sign in without password
+  And I click sign in as merchant link
+  And I submit merchant sign in form without password
+  Then I should see error message "Invalid Email or Password."
+
+Scenario: sign in with wrong password
+  And I click sign in as merchant link
+  And I submit merchant sign in form with wrong password
+  Then I should see error message "Invalid Email or Password."
+
+@sign_up_page
+Scenario: merchant signup page
+  Given I am on merchant signup page
+  Then I should see merchant signup form
+
+Scenario: submit blank sign up form
   Given I am on merchant signup page
   And I submit the signup form
   Then I should see flash error "Please fix the below mentioned errors to continue."
   Then I should see inline error on all "MerchantSignupPage::MERCHANT_ATTR"
 
-Scenario: submit form with blank name
-  Given I am on merchant signup page
-  And I fill "business_name" with ""
-  And I submit the signup form
-  Then I should see flash error "Please fix the below mentioned errors to continue."
-  Then I should see inline error "Business name can't be blank"
-
-Scenario: submit form with blank location
-  Given I am on merchant signup page
-  And I fill "location" with ""
-  And I submit the signup form
-  Then I should see flash error "Please fix the below mentioned errors to continue."
-  Then I should see inline error "Location can't be blank"  
-
-Scenario: submit form with blank email
-  Given I am on merchant signup page
-  And I fill "email" with ""
-  And I submit the signup form
-  Then I should see flash error "Please fix the below mentioned errors to continue."
-  Then I should see inline error "Email can't be blank" 
-
-Scenario: submit form with blank phone
-  Given I am on merchant signup page
-  And I fill "phone" with ""
-  And I submit the signup form
-  Then I should see flash error "Please fix the below mentioned errors to continue."
-  Then I should see inline error "Phone can't be blank"  
-
-Scenario: submit form with blank contact_person
-  Given I am on merchant signup page
-  And I fill "contact_person" with ""
-  And I submit the signup form
-  Then I should see flash error "Please fix the below mentioned errors to continue."
-  Then I should see inline error "Contact person can't be blank"
-
-Scenario: submit form with blank business_description
-  Given I am on merchant signup page
-  And I fill "business_description" with ""
-  And I submit the signup form
-  Then I should see flash error "Please fix the below mentioned errors to continue."
-  Then I should see inline error "Business description can't be blank"
-
-Scenario: submit form with invalid email
+Scenario: submit sign up form with invalid email
   Given I am on merchant signup page
   And I fill "email" with "test"
   And I fill "location" with ""
   And I submit the signup form
   Then I should see inline error "Email is invalid"
 
-Scenario: submit form with valid data and deal offer
+Scenario: submit sign up form with valid data and deal offer
   Given I am on merchant signup page
   And I fill merchant signup form
   And I submit the signup form
   Then I should see flash notice "Your Request has been created successfully"
 
-Scenario: submit form with promo offer without logo
+Scenario: submit sign up form with promo offer without logo
   Given I am on merchant signup page
   And I fill merchant signup form
   And I check offer promo checkbox
   And I submit the signup form
   Then I should see inline error "Logo can't be blank"
 
-Scenario: submit form with promo offer
+Scenario: submit sign up form with promo offer
   Given I am on merchant signup page
   And I fill merchant signup form
   And I check offer promo checkbox

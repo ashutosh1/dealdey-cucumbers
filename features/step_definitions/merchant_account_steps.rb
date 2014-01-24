@@ -1,4 +1,4 @@
-Given(/^I am on merchant account page$/) do
+Given(/^I go to merchant account page$/) do
   rescue_background_exception do 
     navigate_to(MerchantHomePage, :using => :merchant_account_page).sign_in_merchant
     @current_page.wait_until do 
@@ -56,15 +56,11 @@ Then(/^I should see email field is disabled$/) do
   expect(on(MerchantAccountPage).merchant_email_element.attribute("readonly")).to eq("true")
 end
 
-And(/^I update profile without "([^\"]*)" on my account section$/) do|pass_attr|
-  on(MerchantAccountPage).populate_merchant_profile({pass_attr.to_sym => ""})
-end
-
 And(/^I update profile with invalid website on my account section$/) do
   on(MerchantAccountPage).populate_merchant_profile({:website => "test"})
 end
 
-And(/^I update profile without category on my account section$/) do
-  on(MerchantAccountPage).category_element[0].click
+And(/^I update profile with blank values$/) do
+  on(MerchantAccountPage).populate_merchant_profile({:business_name => "", :location => "", :contact_person => "", :business_description => "", :phone => ""})
   on(MerchantAccountPage).save_profile
 end
