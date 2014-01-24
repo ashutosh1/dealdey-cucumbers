@@ -20,3 +20,5 @@ PageObject::PageFactory.routes = {
   :non_rencredit_deal => [[DealDetailPage,:visit_non_rencredit_deal], [Checkout,:buy_product], [Checkout, :add_to_cart]], 
   :merchant_account_page => [[MerchantSignupPage, :register_as_merchant],[MerchantSignupPage, :sign_in_link], [MerchantHomePage, :sign_in_merchant]]
 }
+
+PageObject.javascript_framework = :jquery

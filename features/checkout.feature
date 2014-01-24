@@ -13,17 +13,13 @@ Scenario: add product to cart
 Scenario: on cart detail page
   Given I am on cart detail page for non shippable item
   Then I should see 'Continue shopping' link
-  And I click 'Proceed to Payment' link
   And I am logged in as user
-  And I wait for 5 seconds
   And I proceed
   Then I should be on 'checkout' page
 
 Scenario: on checkout page
   Given I am on cart detail page for non shippable item
-  And I click 'Proceed to Payment' link
   And I am logged in as user
-  And I wait for 5 seconds
   And I proceed
   And I click 'Complete Order' button
   Then Order should be successful
@@ -44,9 +40,7 @@ Scenario: add shippable product to cart
 
 Scenario: on checkout of shippable item
   Given I am on cart detail page for shippable item
-  And I click 'Proceed to Payment' link
   And I am logged in as user
-  And I wait for 5 seconds
   Then I should see addresses to select
   And I select first address
   And I click 'Proceed to Payment' link
@@ -55,6 +49,28 @@ Scenario: on checkout of shippable item
   Then Order should be successful
   Then I should see 'Thanks for shopping on DealDey!'
 
+@with_new_ship_address
+Scenario: User see new shipping address form on checkout of shippable item 
+  Given I am on cart page for shippable item
+  Then I should see new ship addresses form
+
+Scenario: submit with blank new shipping address on checkout of shippable item
+  Given I am on cart page for shippable item
+  And I submit the new shipping form
+  Then I should see flash error "Shipping address address line can't be blank, Shipping address area can't be blank, and Shipping address name can't be blank"
+
+Scenario: checkout with new shipping address for shippable item
+  Given I am on cart page for shippable item
+  And I proceed with new shipping address
+  Then I should be on 'checkout' page
+
+Scenario: complete order for shippable item with new shipping address
+  Given I am on cart page for shippable item
+  And I proceed with new shipping address
+  And I click 'Complete Order' button
+  Then Order should be successful
+  Then I should see 'Thanks for shopping on DealDey!'
+  
 @shippable_pod
 Scenario: shippable pod deals
   Given I am on deatil page of shippable pod deal
@@ -68,9 +84,7 @@ Scenario: add shippable pod deals to cart
 Scenario: on checkout of shippable pod
   Given I am on deatil page of shippable pod deal
   And I click 'buy' button
-  And I click 'Proceed to Payment' link
   And I am logged in as user
-  And I wait for 5 seconds
   Then I should see addresses to select
   And I select first address
   And I click 'Proceed to Payment' link
@@ -99,14 +113,12 @@ Scenario: on checkout of non shippable pod
   Given I am on deatil page of non shippable pod deal
   And I click 'Buy' link
   And I am logged in as user
-  And I wait for 5 seconds
   And I proceed
   Then I should be on 'checkout' page
 
 Scenario: checkout for non shippable pod with selecting address
   Given I am on checkout page of non shippable pod deal
   And I am logged in as user
-  And I wait for 5 seconds
   And I proceed
   And I selcet Pay on Delivery
   And I click 'select/add your shipping address'
@@ -119,7 +131,6 @@ Scenario: checkout for non shippable pod with selecting address
 Scenario: checkout for non shippable pod with new address
   Given I am on checkout page of non shippable pod deal
   And I am logged in as user
-  And I wait for 5 seconds
   And I proceed
   And I selcet Pay on Delivery
   And I click 'select/add your shipping address'
@@ -132,7 +143,6 @@ Scenario: checkout for non shippable pod with new address
 Scenario: checkout for non shippable pod without selecting address
   Given I am on checkout page of non shippable pod deal
   And I am logged in as user
-  And I wait for 5 seconds
   And I proceed
   And I selcet Pay on Delivery
   And I click 'select/add your shipping address'

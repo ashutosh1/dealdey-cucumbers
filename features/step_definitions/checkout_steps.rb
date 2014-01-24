@@ -1,5 +1,8 @@
 And(/^I am logged in as user$/) do
   on(Checkout).login_user
+  on(Checkout).wait_until do 
+    on(SharedPage).flash_notice?
+  end
 end
 
 Given(/^I am on deatil page of deal 'limited\-time\-offer'$/) do
@@ -14,22 +17,18 @@ Then(/^I should see 'Add To Cart' popup$/) do
   expect(on(Checkout).add_to_cart_div?).to eq(true)
 end
 
-And(/^I wait for 5 seconds$/) do
-  sleep(5)
-end
-
 And(/^I am on cart detail page for non shippable item$/) do
   on(Checkout).visit_non_shippable_page
   on(Checkout).buy_product
 end
 
 Then(/^I should be on 'checkout' page$/) do
-  expect(@current_page.complete_order_div?).to eq(true)
-  expect(@current_page.payment_methods_div?).to eq(true)
+  expect(on(Checkout).complete_order_div?).to eq(true)
+  expect(on(Checkout).payment_methods_div?).to eq(true)
 end
 
 And(/^I click 'Complete Order' button$/) do
-  @current_page.complete_order
+  on(Checkout).complete_order
 end
 
 Then(/^Order should be successful$/) do
@@ -62,11 +61,11 @@ Given(/^I am on cart detail page for shippable item$/) do
 end
 
 Then(/^I should see addresses to select$/) do
-  expect(@current_page.select_address?).to eq(true)
+  expect(on(Checkout).select_address?).to eq(true)
 end
 
 And(/^I select first address$/) do
-  @current_page.select_first_address
+  on(Checkout).select_first_address
 end
 
 Given(/^I am on deatil page of shippable pod deal$/) do
