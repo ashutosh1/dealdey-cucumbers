@@ -1,3 +1,7 @@
+Given(/^I am logged in as merchant$/) do
+  rescue_background_exception{navigate_to(MerchantHomePage, :using => :merchant_account_page).sign_in_merchant}
+end 
+
 And(/^I am logged in as merchant with valid subscription$/) do
   on(MerchantHomePage).sign_in_merchant("merchant_with_valid_subscription")
 end 
