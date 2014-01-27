@@ -68,3 +68,25 @@ Scenario: On merchant home page as merchant with invalid subscription
 Scenario: On merchant home page as merchant with valid subscription
   And I am logged in as merchant with valid subscription
   Then I should not see subscription info
+
+@footer_links_for_merchant
+Scenario: On merchant home page as merchant with valid subscription
+  And I am logged in as merchant with valid subscription
+  Then I should see "Copyright © 2014 Dealdey. All right reserved." in merchant footer
+
+Scenario: other links in merchant footer
+  And I am logged in as merchant with valid subscription
+  Then I should see other links in merchant footer:
+  |footer_links|
+  |contact faq |
+
+Scenario: contact us page
+  And I am logged in as merchant with valid subscription
+  And I click "Contact Us" in merchant footer 
+  Then I should see "Contact"
+
+Scenario: faq page
+  And I am logged in as merchant with valid subscription
+  And I click "FAQ" in merchant footer 
+  Then I should see "FAQ"
+

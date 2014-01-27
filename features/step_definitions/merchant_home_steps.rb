@@ -51,3 +51,20 @@ end
 Then(/^I should not see subscription info$/) do
   expect(on(MerchantHomePage).subscription_info?).to eq(false)
 end
+
+Then(/^I should see "([^\"]*)" in merchant footer$/) do|expected_text|
+  expect(on(MerchantHomePage).merchant_footer_element.text).to include(expected_text)
+end
+
+Then(/^I should see other links in merchant footer:$/) do|table|
+  data = table.hashes[0]
+  data["footer_links"].split.each do|other_link|
+    lnk = "footer_#{other_link.downcase}"
+    expect(on(MerchantHomePage).send("#{lnk}?")).to eq(true)
+  end
+end
+
+And(/^I click "([^\"]*)" in merchant footer$/) do |expected_text|
+  lnk = "footer_#{expected_text.downcase.split.join('_')}"
+  on(MerchantHomePage).send(lnk)
+end

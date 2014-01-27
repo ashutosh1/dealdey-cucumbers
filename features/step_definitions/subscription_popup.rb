@@ -30,14 +30,6 @@ Then(/^I should see sign up link$/) do
   expect(on(SubscriptionPopup).sign_up?).to eq(true)
 end
 
-Then(/^I should see sign in link$/) do
-  expect(on(SubscriptionPopup).sign_in_link?).to eq(true)
-end
-
-Then(/^I should see sign up link$/) do
-  expect(on(SubscriptionPopup).sign_up_link?).to eq(true)
-end
-
 When /^I enter "(.*?)" into email field$/ do |email|
   on(SubscriptionPopup).subscription_email= email
 end

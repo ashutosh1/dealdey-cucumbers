@@ -20,6 +20,13 @@ class MerchantHomePage
 
   link(:proceed_to_payment, :text => "Proceed To Payment")
   div(:merchant_notice, :id => "merchant-notice")
+  div(:merchant_footer, :class => "merchant_footer")
+  link(:footer_contact)do|page|
+    page.div_element(:class => "merchant_footer").link_element(:text => "Contact")
+  end
+  link(:footer_faq)do|page|
+    page.div_element(:class => "merchant_footer").link_element(:text => "FAQ")
+  end
   div(:merchant_welcome)do|page|
     page.div_element(:id => "merchant-notice").div_element(:class => "merchant_welcome")
   end

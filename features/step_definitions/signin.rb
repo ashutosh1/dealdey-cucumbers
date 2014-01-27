@@ -25,6 +25,9 @@ end
 
 Given(/^I am signed in as user$/) do
   rescue_background_exception{on(SigninPage).signed_in_user}
+  on(SigninPage).wait_until do 
+    on(SharedPage).flash_notice?
+  end
 end
 
 Then(/^I should see error message "([^\"]*)"$/) do |expected_text|
