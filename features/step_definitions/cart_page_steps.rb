@@ -26,3 +26,7 @@ end
 And(/^I proceed with new shipping address$/) do
   on(CartPage).populate_new_shipping_address
 end
+
+Then(/^I should see (\d+) in cart icon on cart page$/) do|val|
+  expect(on(CartPage).deals_count_in_cart).to eq(val)
+end

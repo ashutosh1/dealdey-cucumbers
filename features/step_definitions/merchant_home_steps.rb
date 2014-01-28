@@ -68,3 +68,15 @@ And(/^I click "([^\"]*)" in merchant footer$/) do |expected_text|
   lnk = "footer_#{expected_text.downcase.split.join('_')}"
   on(MerchantHomePage).send(lnk)
 end
+
+And(/^I am logged in as merchant with expired subscription$/) do
+  on(MerchantHomePage).sign_in_merchant("merchant_signin_credential")
+end 
+
+Then(/^I should see error image$/) do
+  expect(on(MerchantHomePage).error_image?).to eq(true)
+end
+
+Then(/^I should see subscription expire warning$/) do
+  expect(on(MerchantHomePage).subscription_info_warning_element.text).to include("Your subscription expired on")
+end

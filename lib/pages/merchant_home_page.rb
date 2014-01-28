@@ -14,23 +14,32 @@ class MerchantHomePage
   text_field(:merchant_email, :id => "merchant_email")
   text_field(:merchant_password, :id => "merchant_password")
   form(:promo_offer_form, :id => 'new_discount_coupon')
+  span(:cancel_subscription, :class => "cancel-image")
+  span(:error_image, :class => "error-img")
+
   link(:logout, :text => "Logout")
   link(:my_account, :text => "My Account")  
   link(:contact, :text => "Contact")
-
   link(:proceed_to_payment, :text => "Proceed To Payment")
+
   div(:merchant_notice, :id => "merchant-notice")
   div(:merchant_footer, :class => "merchant_footer")
+  
+  div(:subscription_info_warning) do|page|
+    page.div_element(:class => "merchant_welcome").div_element(:class => "info")
+  end
+  
   link(:footer_contact)do|page|
     page.div_element(:class => "merchant_footer").link_element(:text => "Contact")
   end
+  
   link(:footer_faq)do|page|
     page.div_element(:class => "merchant_footer").link_element(:text => "FAQ")
   end
+  
   div(:merchant_welcome)do|page|
     page.div_element(:id => "merchant-notice").div_element(:class => "merchant_welcome")
   end
-  span(:cancel_subscription, :class => "cancel-image")
 
   def merchant_password=(value)
     execute_script("document.getElementById('merchant_password').value = '#{value}';")

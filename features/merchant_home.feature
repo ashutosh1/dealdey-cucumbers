@@ -90,3 +90,8 @@ Scenario: faq page
   And I click "FAQ" in merchant footer 
   Then I should see "FAQ"
 
+@expired_subscription
+Scenario: subscription expired
+  And I am logged in as merchant with expired subscription
+  Then I should see error image
+  Then I should see subscription expire warning

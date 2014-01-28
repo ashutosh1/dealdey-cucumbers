@@ -34,5 +34,11 @@ class DealDetailPage
     @browser.navigate.to(url_to_visit(:shippable_deal))
   end
 
+  def add_option_to_select
+    execute_script("var x = document.getElementById('cart_item_quantity');
+    var option = document.createElement('option');
+    option.text = '100';
+    x.add(option);")
+  end
 
 end

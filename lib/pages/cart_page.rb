@@ -14,6 +14,10 @@ class CartPage
   text_field(:address_landmark, :id => "cart_shipping_address_attributes_landmark")
   form(:new_ship_address_form, :class => "edit_cart")
 
+  span(:deals_count_in_cart)do |page|
+    page.unordered_list_element(:class => "cart-header").link_element(:class => "cart-header").span_element(:class => "count")
+  end
+
   def proceed
     span = @browser.find_element(:class => "main-button-orange-arrow")
     span.find_element(:name => "commit", :value => "Proceed to Payment", :type => "submit").click
@@ -29,4 +33,5 @@ class CartPage
     self.new_shipping_address_area_element[1].click
     proceed_with_new_address
   end
+
 end
