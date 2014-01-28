@@ -1,18 +1,10 @@
-And /^I fill sign in email with "(.*?)"$/ do |email|
-  on(SigninPage).email= email
-end
-
-And /^I fill sign in password with "(.*?)"$/ do |password|
-  on(SigninPage).password= password
-end
-
 And /^I click Sign In link$/ do
   on(SigninPage).sign_in_link
 end
 
 And /^I click on Sign In button$/ do
   on(SigninPage).sign_in
-  sleep(5)
+  on(SigninPage).wait_for_ajax
 end
 
 Then(/^I should see sign in popup$/) do
@@ -32,4 +24,20 @@ end
 
 Then(/^I should see error message "([^\"]*)"$/) do |expected_text|
   expect(@current_page.error_message_elements[-1].element.text).to eq(expected_text)
+end
+
+And(/^I submit sign in form with valid credentials$/)do 
+  on(SigninPage).populate_signin_form
+end
+
+And(/^I submit sign in form with wrong password$/)do 
+  on(SigninPage).populate_signin_form({:password => "xyz"})
+end
+
+And(/^I submit sign in form without password$/)do 
+  on(SigninPage).populate_signin_form({:password => ""})
+end
+
+And(/^I submit sign in form with invalid credentials$/)do 
+  on(SigninPage).populate_signin_form({:email => "xz@zv.com", :password => "xyz"})
 end

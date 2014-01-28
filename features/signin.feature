@@ -12,25 +12,17 @@ Scenario: sign in with blank credentials
   Then I should see error message "Invalid email or password."
 
 Scenario: sign in with invalid credentials
-  And I fill sign in email with "test"
-  And I click on Sign In button
+  And I submit sign in form with invalid credentials
   Then I should see error message "Invalid email or password."
 
-Scenario: sign in with valid credentials
-  And I fill sign in email with "vijay@vinsol.com"
-  And I fill sign in password with "123456"
-  And I click on Sign In button
-  Then I should see flash notice "Signed in successfully."
-
 Scenario: sign in without password
-  And I fill sign in email with "vijay@vinsol.com"
-  And I fill sign in password with ""
-  And I click on Sign In button
+  And I submit sign in form without password
   Then I should see error message "Invalid email or password."
 
 Scenario: sign in with wrong password
-  And I fill sign in email with "vijay@vinsol.com"
-  And I fill sign in password with "xyz"
-  And I click on Sign In button
+  And I submit sign in form with wrong password
   Then I should see error message "Invalid email or password."
 
+Scenario: sign in with valid credentials
+  And I submit sign in form with valid credentials
+  Then I should see flash notice "Signed in successfully."
