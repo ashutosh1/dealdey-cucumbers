@@ -19,10 +19,13 @@ class SigninPage
   	span.find_element(:name => "commit", :value => "Sign in", :type => "submit").click
   end
 
-  def signed_in_user(data={})
+  def signed_in_user
     self.sign_in_link
+    populate_signin_form
+  end
+
+  def populate_signin_form(data={})
     populate_page_with data_for("users/admin_first").merge(data)
-    self.sign_in
   end
 
 end

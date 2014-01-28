@@ -28,16 +28,23 @@ end
 
 And(/^I submit sign in form with valid credentials$/)do 
   on(SigninPage).populate_signin_form
+  step "I click on Sign In button"
+  on(SigninPage).wait_until do 
+    on(SharedPage).flash_notice?
+  end
 end
 
 And(/^I submit sign in form with wrong password$/)do 
   on(SigninPage).populate_signin_form({:password => "xyz"})
+  step "I click on Sign In button"
 end
 
 And(/^I submit sign in form without password$/)do 
   on(SigninPage).populate_signin_form({:password => ""})
+  step "I click on Sign In button"
 end
 
 And(/^I submit sign in form with invalid credentials$/)do 
   on(SigninPage).populate_signin_form({:email => "xz@zv.com", :password => "xyz"})
+  step "I click on Sign In button"
 end
