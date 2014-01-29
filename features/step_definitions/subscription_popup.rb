@@ -5,14 +5,6 @@ Then(/^I should see subscription popup$/) do
   expect(on(SubscriptionPopup).subscription_popup?).to eq(true)
 end
 
-Then(/^I should not see pod text$/) do
-  expect(on(SubscriptionPopup).pod_text?).to eq(false)
-end
-
-Then(/^I should see not span having number to call$/) do
-  expect(on(SubscriptionPopup).call?).to eq(false)
-end
-
 Then(/^I should see subscribe now button for subscription popup$/) do
   popup = @browser.find_element(:class => 'new_email_subscription')
   expect(popup.find_element(:name => "commit", :value => "Subscribe Now", :type => "submit").displayed?).to eq(true)
@@ -30,8 +22,9 @@ Then(/^I should see sign up link$/) do
   expect(on(SubscriptionPopup).sign_up?).to eq(true)
 end
 
-When /^I enter "(.*?)" into email field$/ do |email|
+When /^I submit subscription form with email "(.*?)"$/ do |email|
   on(SubscriptionPopup).subscription_email= email
+  on(SubscriptionPopup).register
 end
 
 And /^I click subscribe now$/ do
